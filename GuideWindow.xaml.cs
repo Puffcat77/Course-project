@@ -51,21 +51,13 @@ namespace Course_project
             {
                 SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
                 adapter.Update(currentTable);
+                FillGrid(CurrentTableName);
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
-
-        //private void FillGrid(string tablePrefix)
-        //{
-        //    foreach (var column in MainDataGrid.Columns.All())
-        //    {
-        //        var c = column as DataGridTextColumn;
-        //        if ()
-        //    }
-        //}
 
         private void FillGrid(string tableName)
         {
