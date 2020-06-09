@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Course_project.Models;
+using Microsoft.ReportingServices.ReportProcessing.ReportObjectModel;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -23,51 +25,56 @@ namespace Course_project
     public partial class AuthentificationWindow : Window
     {
         public string UserType { get; set; }
+        private Brush baseColorBrush;
+        private InventoryDBContext InventoryDBContext { get; set; }
 
         public AuthentificationWindow()
         {
             InitializeComponent();
             authBtn.Background = Brushes.LightGreen;
             UserType = "";
+            baseColorBrush = authBtn.Background;
+            InventoryDBContext = new InventoryDBContext();
         }
 
         private void authBtn_Click(object sender, RoutedEventArgs e)
         {
-            string login = loginTextBox.Text;
-            string password = passBox.Password;
-            DB db = new DB();
-
-            DataTable userTable = new DataTable();
-
-            SqlDataAdapter adapter = new SqlDataAdapter();
-
-            SqlCommand command = new SqlCommand("select Login, Password, " +
-                "Type from Users where Login = @ul and Password = @up", db.GetConnection());
-            command.Parameters.Add("@ul", SqlDbType.VarChar).Value = login;
-            command.Parameters.Add("@up", SqlDbType.VarChar).Value = password;
-
-            adapter.SelectCommand = command;
-            adapter.Fill(userTable);
-
-            if (userTable.Rows.Count == 1)
+            try
             {
-                if (login == "watcher")
+                string login = loginTextBox.Text;
+                string password = passBox.Password;
+
+                Users user = InventoryDBContext.Users.FirstOrDefault((Users u) => u.Login == login && u.Password == password) as Users;
+
+                if (user != null)
                 {
-                    MessageBox.Show("Вы вошли как обычный сотрудник.");
+                    if (login == "watcher")
+                    {
+                        MessageBox.Show("Вы вошли как обычный сотрудник.");
+                    }
+                    else if (login == "technician")
+                    {
+                        MessageBox.Show("Вы вошли как сотрудник техотдела.");
+                    }
+                    UserType = user.Type;
+                    this.Close();
                 }
-                else if (login == "technician")
+                else
                 {
-                    MessageBox.Show("Вы вошли как сотрудник техотдела.");
+                    MessageBox.Show("Проверьте введенные данные.");
+                    loginTextBox.Text = "";
+                    passBox.Password = "";
                 }
-                UserType = userTable.Rows[0]["Type"].ToString();
-                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show("Проверьте введенные данные.");
-                loginTextBox.Text = "";
-                passBox.Password = "";
+                MessageBox.Show(ex.Message);
             }
+        }
+        private void Btn_MouseMove(object sender, MouseEventArgs e)
+        {
+            var b = sender as Button;
+            b.Background = (b.Background == baseColorBrush) ? Brushes.LawnGreen : baseColorBrush;
         }
     }
 }

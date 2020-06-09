@@ -1,0 +1,597 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="ReportsDataSet" targetNamespace="http://tempuri.org/ReportsDataSet.xsd" xmlns:mstns="http://tempuri.org/ReportsDataSet.xsd" xmlns="http://tempuri.org/ReportsDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Settings" AppSettingsPropertyName="InventoryDBConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="InventoryDBConnectionString (Settings)" ParameterPrefix="@" PropertyReference="ApplicationSettings.Course_project.Properties.Settings.GlobalReference.Default.InventoryDBConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PurchaseCostsTableAdapter" GeneratorDataComponentClassName="PurchaseCostsTableAdapter" Name="PurchaseCosts" UserDataComponentName="PurchaseCostsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.PurchaseCosts" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT InventoryName, CompanyName, DateOfPurchase, Cost FROM dbo.PurchaseCosts</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="InventoryName" DataSetColumn="InventoryName" />
+              <Mapping SourceColumn="CompanyName" DataSetColumn="CompanyName" />
+              <Mapping SourceColumn="DateOfPurchase" DataSetColumn="DateOfPurchase" />
+              <Mapping SourceColumn="Cost" DataSetColumn="Cost" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RepairCostsTableAdapter" GeneratorDataComponentClassName="RepairCostsTableAdapter" Name="RepairCosts" UserDataComponentName="RepairCostsTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.RepairCosts" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT RepairCost, RepairDate, RepairCompanyName, InventoryName FROM dbo.RepairCosts</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RepairCost" DataSetColumn="RepairCost" />
+              <Mapping SourceColumn="RepairDate" DataSetColumn="RepairDate" />
+              <Mapping SourceColumn="RepairCompanyName" DataSetColumn="RepairCompanyName" />
+              <Mapping SourceColumn="InventoryName" DataSetColumn="InventoryName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RepairFrequencyTableAdapter" GeneratorDataComponentClassName="RepairFrequencyTableAdapter" Name="RepairFrequency" UserDataComponentName="RepairFrequencyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.RepairFrequency" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT InventoryID, RepairDate FROM dbo.RepairFrequency</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="InventoryID" DataSetColumn="InventoryID" />
+              <Mapping SourceColumn="RepairDate" DataSetColumn="RepairDate" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="InventoryTableAdapter" GeneratorDataComponentClassName="InventoryTableAdapter" Name="Inventory" UserDataComponentName="InventoryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.Inventory" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[Inventory] WHERE (([InventoryID] = @Original_InventoryID) AND ([EntryDate] = @Original_EntryDate) AND ((@IsNull_WithdrawalDate = 1 AND [WithdrawalDate] IS NULL) OR ([WithdrawalDate] = @Original_WithdrawalDate)) AND ((@IsNull_GuaranteeDate = 1 AND [GuaranteeDate] IS NULL) OR ([GuaranteeDate] = @Original_GuaranteeDate)) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_InventoryCardID = 1 AND [InventoryCardID] IS NULL) OR ([InventoryCardID] = @Original_InventoryCardID)) AND ((@IsNull_ResponsibleID = 1 AND [ResponsibleID] IS NULL) OR ([ResponsibleID] = @Original_ResponsibleID)) AND ((@IsNull_SerialNumber = 1 AND [SerialNumber] IS NULL) OR ([SerialNumber] = @Original_SerialNumber)) AND ([InventoryName] = @Original_InventoryName) AND ((@IsNull_Condition = 1 AND [Condition] IS NULL) OR ([Condition] = @Original_Condition)) AND ((@IsNull_SpecialSoftware = 1 AND [SpecialSoftware] IS NULL) OR ([SpecialSoftware] = @Original_SpecialSoftware)) AND ((@IsNull_InventoryNumber = 1 AND [InventoryNumber] IS NULL) OR ([InventoryNumber] = @Original_InventoryNumber)))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_EntryDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="EntryDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WithdrawalDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WithdrawalDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_WithdrawalDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="WithdrawalDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_GuaranteeDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="GuaranteeDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_GuaranteeDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="GuaranteeDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_InventoryCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryCardID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_InventoryCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryCardID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ResponsibleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResponsibleID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ResponsibleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResponsibleID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SerialNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SerialNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_SerialNumber" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SerialNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_InventoryName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InventoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Condition" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Condition" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_Condition" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Condition" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SpecialSoftware" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SpecialSoftware" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_SpecialSoftware" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SpecialSoftware" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_InventoryNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_InventoryNumber" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="InventoryNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[Inventory] ([EntryDate], [WithdrawalDate], [GuaranteeDate], [Notes], [InventoryCardID], [ResponsibleID], [SerialNumber], [InventoryName], [Condition], [SpecialSoftware], [InventoryNumber]) VALUES (@EntryDate, @WithdrawalDate, @GuaranteeDate, @Notes, @InventoryCardID, @ResponsibleID, @SerialNumber, @InventoryName, @Condition, @SpecialSoftware, @InventoryNumber);
+SELECT InventoryID, EntryDate, WithdrawalDate, GuaranteeDate, Notes, InventoryCardID, ResponsibleID, SerialNumber, InventoryName, Condition, SpecialSoftware, InventoryNumber FROM Inventory WHERE (InventoryID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@EntryDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="EntryDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@WithdrawalDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="WithdrawalDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@GuaranteeDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="GuaranteeDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@InventoryCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryCardID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ResponsibleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResponsibleID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@SerialNumber" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SerialNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@InventoryName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InventoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Condition" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Condition" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@SpecialSoftware" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SpecialSoftware" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@InventoryNumber" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="InventoryNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT InventoryID, EntryDate, WithdrawalDate, GuaranteeDate, Notes, InventoryCardID, ResponsibleID, SerialNumber, InventoryName, Condition, SpecialSoftware, InventoryNumber FROM dbo.Inventory</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[Inventory] SET [EntryDate] = @EntryDate, [WithdrawalDate] = @WithdrawalDate, [GuaranteeDate] = @GuaranteeDate, [Notes] = @Notes, [InventoryCardID] = @InventoryCardID, [ResponsibleID] = @ResponsibleID, [SerialNumber] = @SerialNumber, [InventoryName] = @InventoryName, [Condition] = @Condition, [SpecialSoftware] = @SpecialSoftware, [InventoryNumber] = @InventoryNumber WHERE (([InventoryID] = @Original_InventoryID) AND ([EntryDate] = @Original_EntryDate) AND ((@IsNull_WithdrawalDate = 1 AND [WithdrawalDate] IS NULL) OR ([WithdrawalDate] = @Original_WithdrawalDate)) AND ((@IsNull_GuaranteeDate = 1 AND [GuaranteeDate] IS NULL) OR ([GuaranteeDate] = @Original_GuaranteeDate)) AND ((@IsNull_Notes = 1 AND [Notes] IS NULL) OR ([Notes] = @Original_Notes)) AND ((@IsNull_InventoryCardID = 1 AND [InventoryCardID] IS NULL) OR ([InventoryCardID] = @Original_InventoryCardID)) AND ((@IsNull_ResponsibleID = 1 AND [ResponsibleID] IS NULL) OR ([ResponsibleID] = @Original_ResponsibleID)) AND ((@IsNull_SerialNumber = 1 AND [SerialNumber] IS NULL) OR ([SerialNumber] = @Original_SerialNumber)) AND ([InventoryName] = @Original_InventoryName) AND ((@IsNull_Condition = 1 AND [Condition] IS NULL) OR ([Condition] = @Original_Condition)) AND ((@IsNull_SpecialSoftware = 1 AND [SpecialSoftware] IS NULL) OR ([SpecialSoftware] = @Original_SpecialSoftware)) AND ((@IsNull_InventoryNumber = 1 AND [InventoryNumber] IS NULL) OR ([InventoryNumber] = @Original_InventoryNumber)));
+SELECT InventoryID, EntryDate, WithdrawalDate, GuaranteeDate, Notes, InventoryCardID, ResponsibleID, SerialNumber, InventoryName, Condition, SpecialSoftware, InventoryNumber FROM Inventory WHERE (InventoryID = @InventoryID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@EntryDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="EntryDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@WithdrawalDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="WithdrawalDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@GuaranteeDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="GuaranteeDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@InventoryCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryCardID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@ResponsibleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResponsibleID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@SerialNumber" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SerialNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@InventoryName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InventoryName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Condition" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Condition" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@SpecialSoftware" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SpecialSoftware" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@InventoryNumber" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="InventoryNumber" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_EntryDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="EntryDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_WithdrawalDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="WithdrawalDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_WithdrawalDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="WithdrawalDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_GuaranteeDate" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="GuaranteeDate" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_GuaranteeDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="GuaranteeDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Notes" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="String" Direction="Input" ParameterName="@Original_Notes" Precision="0" ProviderType="NVarChar" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_InventoryCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryCardID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_InventoryCardID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryCardID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_ResponsibleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResponsibleID" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_ResponsibleID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="ResponsibleID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SerialNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SerialNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_SerialNumber" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SerialNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_InventoryName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="InventoryName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_Condition" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="Condition" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_Condition" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="Condition" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_SpecialSoftware" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="SpecialSoftware" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_SpecialSoftware" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="SpecialSoftware" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@IsNull_InventoryNumber" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryNumber" SourceColumnNullMapping="true" SourceVersion="Original" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="Int64" Direction="Input" ParameterName="@Original_InventoryNumber" Precision="0" ProviderType="BigInt" Scale="0" Size="0" SourceColumn="InventoryNumber" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="InventoryID" ColumnName="InventoryID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="InventoryID" DataSetColumn="InventoryID" />
+              <Mapping SourceColumn="EntryDate" DataSetColumn="EntryDate" />
+              <Mapping SourceColumn="WithdrawalDate" DataSetColumn="WithdrawalDate" />
+              <Mapping SourceColumn="GuaranteeDate" DataSetColumn="GuaranteeDate" />
+              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
+              <Mapping SourceColumn="InventoryCardID" DataSetColumn="InventoryCardID" />
+              <Mapping SourceColumn="ResponsibleID" DataSetColumn="ResponsibleID" />
+              <Mapping SourceColumn="SerialNumber" DataSetColumn="SerialNumber" />
+              <Mapping SourceColumn="InventoryName" DataSetColumn="InventoryName" />
+              <Mapping SourceColumn="Condition" DataSetColumn="Condition" />
+              <Mapping SourceColumn="SpecialSoftware" DataSetColumn="SpecialSoftware" />
+              <Mapping SourceColumn="InventoryNumber" DataSetColumn="InventoryNumber" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PurchaseCompanyTableAdapter" GeneratorDataComponentClassName="PurchaseCompanyTableAdapter" Name="PurchaseCompany" UserDataComponentName="PurchaseCompanyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.PurchaseCompany" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[PurchaseCompany] WHERE (([PurchaseCompanyID] = @Original_PurchaseCompanyID) AND ([CompanyName] = @Original_CompanyName))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_CompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="CompanyName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[PurchaseCompany] ([CompanyName]) VALUES (@CompanyName);
+SELECT PurchaseCompanyID, CompanyName FROM PurchaseCompany WHERE (PurchaseCompanyID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@CompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="CompanyName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT PurchaseCompanyID, CompanyName FROM dbo.PurchaseCompany</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[PurchaseCompany] SET [CompanyName] = @CompanyName WHERE (([PurchaseCompanyID] = @Original_PurchaseCompanyID) AND ([CompanyName] = @Original_CompanyName));
+SELECT PurchaseCompanyID, CompanyName FROM PurchaseCompany WHERE (PurchaseCompanyID = @PurchaseCompanyID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@CompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="CompanyName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_CompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="CompanyName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="PurchaseCompanyID" ColumnName="PurchaseCompanyID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PurchaseCompanyID" DataSetColumn="PurchaseCompanyID" />
+              <Mapping SourceColumn="CompanyName" DataSetColumn="CompanyName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="PurchaseMemoTableAdapter" GeneratorDataComponentClassName="PurchaseMemoTableAdapter" Name="PurchaseMemo" UserDataComponentName="PurchaseMemoTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.PurchaseMemo" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[PurchaseMemo] WHERE (([PurchaseMemoID] = @Original_PurchaseMemoID) AND ([Cost] = @Original_Cost) AND ([DateOfPurchase] = @Original_DateOfPurchase) AND ([PurchasableInventoryID] = @Original_PurchasableInventoryID) AND ([PurchaseCompanyID] = @Original_PurchaseCompanyID))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchaseMemoID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseMemoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_Cost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="Cost" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DateOfPurchase" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfPurchase" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchasableInventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchasableInventoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[PurchaseMemo] ([Cost], [DateOfPurchase], [PurchasableInventoryID], [PurchaseCompanyID]) VALUES (@Cost, @DateOfPurchase, @PurchasableInventoryID, @PurchaseCompanyID);
+SELECT PurchaseMemoID, Cost, DateOfPurchase, PurchasableInventoryID, PurchaseCompanyID FROM PurchaseMemo WHERE (PurchaseMemoID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Cost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="Cost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DateOfPurchase" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfPurchase" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PurchasableInventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchasableInventoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT PurchaseMemoID, Cost, DateOfPurchase, PurchasableInventoryID, PurchaseCompanyID FROM dbo.PurchaseMemo</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[PurchaseMemo] SET [Cost] = @Cost, [DateOfPurchase] = @DateOfPurchase, [PurchasableInventoryID] = @PurchasableInventoryID, [PurchaseCompanyID] = @PurchaseCompanyID WHERE (([PurchaseMemoID] = @Original_PurchaseMemoID) AND ([Cost] = @Original_Cost) AND ([DateOfPurchase] = @Original_DateOfPurchase) AND ([PurchasableInventoryID] = @Original_PurchasableInventoryID) AND ([PurchaseCompanyID] = @Original_PurchaseCompanyID));
+SELECT PurchaseMemoID, Cost, DateOfPurchase, PurchasableInventoryID, PurchaseCompanyID FROM PurchaseMemo WHERE (PurchaseMemoID = @PurchaseMemoID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Cost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="Cost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@DateOfPurchase" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfPurchase" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PurchasableInventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchasableInventoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchaseMemoID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseMemoID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_Cost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="Cost" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_DateOfPurchase" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="DateOfPurchase" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchasableInventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchasableInventoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_PurchaseCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="PurchaseCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="PurchaseMemoID" ColumnName="PurchaseMemoID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@PurchaseMemoID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="PurchaseMemoID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="PurchaseMemoID" DataSetColumn="PurchaseMemoID" />
+              <Mapping SourceColumn="Cost" DataSetColumn="Cost" />
+              <Mapping SourceColumn="DateOfPurchase" DataSetColumn="DateOfPurchase" />
+              <Mapping SourceColumn="PurchasableInventoryID" DataSetColumn="PurchasableInventoryID" />
+              <Mapping SourceColumn="PurchaseCompanyID" DataSetColumn="PurchaseCompanyID" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RepairCompanyTableAdapter" GeneratorDataComponentClassName="RepairCompanyTableAdapter" Name="RepairCompany" UserDataComponentName="RepairCompanyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.RepairCompany" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[RepairCompany] WHERE (([RepairCompanyID] = @Original_RepairCompanyID) AND ([RepairCompanyName] = @Original_RepairCompanyName))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_RepairCompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="RepairCompanyName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[RepairCompany] ([RepairCompanyName]) VALUES (@RepairCompanyName);
+SELECT RepairCompanyID, RepairCompanyName FROM RepairCompany WHERE (RepairCompanyID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@RepairCompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="RepairCompanyName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT RepairCompanyID, RepairCompanyName FROM dbo.RepairCompany</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[RepairCompany] SET [RepairCompanyName] = @RepairCompanyName WHERE (([RepairCompanyID] = @Original_RepairCompanyID) AND ([RepairCompanyName] = @Original_RepairCompanyName));
+SELECT RepairCompanyID, RepairCompanyName FROM RepairCompany WHERE (RepairCompanyID = @RepairCompanyID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@RepairCompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="RepairCompanyName" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="AnsiStringFixedLength" Direction="Input" ParameterName="@Original_RepairCompanyName" Precision="0" ProviderType="Char" Scale="0" Size="0" SourceColumn="RepairCompanyName" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="RepairCompanyID" ColumnName="RepairCompanyID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RepairCompanyID" DataSetColumn="RepairCompanyID" />
+              <Mapping SourceColumn="RepairCompanyName" DataSetColumn="RepairCompanyName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="RepairNoteTableAdapter" GeneratorDataComponentClassName="RepairNoteTableAdapter" Name="RepairNote" UserDataComponentName="RepairNoteTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="InventoryDBConnectionString (Settings)" DbObjectName="InventoryDB.dbo.RepairNote" DbObjectType="Table" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="true" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetData" UserSourceName="Fill">
+                <DeleteCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>DELETE FROM [dbo].[RepairNote] WHERE (([RepairNoteID] = @Original_RepairNoteID) AND ([RepairCompanyID] = @Original_RepairCompanyID) AND ([InventoryID] = @Original_InventoryID) AND ([RepairCost] = @Original_RepairCost) AND ([RepairDate] = @Original_RepairDate))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RepairNoteID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairNoteID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_RepairCost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="RepairCost" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_RepairDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="RepairDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </DeleteCommand>
+                <InsertCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>INSERT INTO [dbo].[RepairNote] ([RepairCompanyID], [InventoryID], [RepairCost], [RepairDate], [Notes]) VALUES (@RepairCompanyID, @InventoryID, @RepairCost, @RepairDate, @Notes);
+SELECT RepairNoteID, RepairCompanyID, InventoryID, RepairCost, RepairDate, Notes FROM RepairNote WHERE (RepairNoteID = SCOPE_IDENTITY())</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@RepairCost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="RepairCost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@RepairDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="RepairDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </InsertCommand>
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT RepairNoteID, RepairCompanyID, InventoryID, RepairCost, RepairDate, Notes FROM dbo.RepairNote</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>UPDATE [dbo].[RepairNote] SET [RepairCompanyID] = @RepairCompanyID, [InventoryID] = @InventoryID, [RepairCost] = @RepairCost, [RepairDate] = @RepairDate, [Notes] = @Notes WHERE (([RepairNoteID] = @Original_RepairNoteID) AND ([RepairCompanyID] = @Original_RepairCompanyID) AND ([InventoryID] = @Original_InventoryID) AND ([RepairCost] = @Original_RepairCost) AND ([RepairDate] = @Original_RepairDate));
+SELECT RepairNoteID, RepairCompanyID, InventoryID, RepairCost, RepairDate, Notes FROM RepairNote WHERE (RepairNoteID = @RepairNoteID)</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@RepairCost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="RepairCost" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@RepairDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="RepairDate" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="" DataSourceName="" DbType="AnsiString" Direction="Input" ParameterName="@Notes" Precision="0" ProviderType="Text" Scale="0" Size="0" SourceColumn="Notes" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RepairNoteID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairNoteID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_RepairCompanyID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="RepairCompanyID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Int32" Direction="Input" ParameterName="@Original_InventoryID" Precision="0" ProviderType="Int" Scale="0" Size="0" SourceColumn="InventoryID" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Currency" Direction="Input" ParameterName="@Original_RepairCost" Precision="0" ProviderType="Money" Scale="0" Size="0" SourceColumn="RepairCost" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="" DataSourceName="" DbType="Date" Direction="Input" ParameterName="@Original_RepairDate" Precision="0" ProviderType="Date" Scale="0" Size="0" SourceColumn="RepairDate" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="RepairNoteID" ColumnName="RepairNoteID" DataSourceName="" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="@RepairNoteID" Precision="0" ProviderType="Int" Scale="0" Size="4" SourceColumn="RepairNoteID" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="RepairNoteID" DataSetColumn="RepairNoteID" />
+              <Mapping SourceColumn="RepairCompanyID" DataSetColumn="RepairCompanyID" />
+              <Mapping SourceColumn="InventoryID" DataSetColumn="InventoryID" />
+              <Mapping SourceColumn="RepairCost" DataSetColumn="RepairCost" />
+              <Mapping SourceColumn="RepairDate" DataSetColumn="RepairDate" />
+              <Mapping SourceColumn="Notes" DataSetColumn="Notes" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="ReportsDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="ReportsDataSet" msprop:Generator_UserDSName="ReportsDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="PurchaseCosts" msprop:Generator_TableClassName="PurchaseCostsDataTable" msprop:Generator_TableVarName="tablePurchaseCosts" msprop:Generator_TablePropName="PurchaseCosts" msprop:Generator_RowDeletingName="PurchaseCostsRowDeleting" msprop:Generator_RowChangingName="PurchaseCostsRowChanging" msprop:Generator_RowEvHandlerName="PurchaseCostsRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseCostsRowDeleted" msprop:Generator_UserTableName="PurchaseCosts" msprop:Generator_RowChangedName="PurchaseCostsRowChanged" msprop:Generator_RowEvArgName="PurchaseCostsRowChangeEvent" msprop:Generator_RowClassName="PurchaseCostsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InventoryName" msprop:Generator_ColumnVarNameInTable="columnInventoryName" msprop:Generator_ColumnPropNameInRow="InventoryName" msprop:Generator_ColumnPropNameInTable="InventoryNameColumn" msprop:Generator_UserColumnName="InventoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CompanyName" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateOfPurchase" msprop:Generator_ColumnVarNameInTable="columnDateOfPurchase" msprop:Generator_ColumnPropNameInRow="DateOfPurchase" msprop:Generator_ColumnPropNameInTable="DateOfPurchaseColumn" msprop:Generator_UserColumnName="DateOfPurchase" type="xs:dateTime" />
+              <xs:element name="Cost" msprop:Generator_ColumnVarNameInTable="columnCost" msprop:Generator_ColumnPropNameInRow="Cost" msprop:Generator_ColumnPropNameInTable="CostColumn" msprop:Generator_UserColumnName="Cost" type="xs:decimal" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RepairCosts" msprop:Generator_TableClassName="RepairCostsDataTable" msprop:Generator_TableVarName="tableRepairCosts" msprop:Generator_TablePropName="RepairCosts" msprop:Generator_RowDeletingName="RepairCostsRowDeleting" msprop:Generator_RowChangingName="RepairCostsRowChanging" msprop:Generator_RowEvHandlerName="RepairCostsRowChangeEventHandler" msprop:Generator_RowDeletedName="RepairCostsRowDeleted" msprop:Generator_UserTableName="RepairCosts" msprop:Generator_RowChangedName="RepairCostsRowChanged" msprop:Generator_RowEvArgName="RepairCostsRowChangeEvent" msprop:Generator_RowClassName="RepairCostsRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RepairCost" msprop:Generator_ColumnVarNameInTable="columnRepairCost" msprop:Generator_ColumnPropNameInRow="RepairCost" msprop:Generator_ColumnPropNameInTable="RepairCostColumn" msprop:Generator_UserColumnName="RepairCost" type="xs:decimal" />
+              <xs:element name="RepairDate" msprop:Generator_ColumnVarNameInTable="columnRepairDate" msprop:Generator_ColumnPropNameInRow="RepairDate" msprop:Generator_ColumnPropNameInTable="RepairDateColumn" msprop:Generator_UserColumnName="RepairDate" type="xs:dateTime" />
+              <xs:element name="RepairCompanyName" msprop:Generator_ColumnVarNameInTable="columnRepairCompanyName" msprop:Generator_ColumnPropNameInRow="RepairCompanyName" msprop:Generator_ColumnPropNameInTable="RepairCompanyNameColumn" msprop:Generator_UserColumnName="RepairCompanyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InventoryName" msprop:Generator_ColumnVarNameInTable="columnInventoryName" msprop:Generator_ColumnPropNameInRow="InventoryName" msprop:Generator_ColumnPropNameInTable="InventoryNameColumn" msprop:Generator_UserColumnName="InventoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RepairFrequency" msprop:Generator_TableClassName="RepairFrequencyDataTable" msprop:Generator_TableVarName="tableRepairFrequency" msprop:Generator_TablePropName="RepairFrequency" msprop:Generator_RowDeletingName="RepairFrequencyRowDeleting" msprop:Generator_RowChangingName="RepairFrequencyRowChanging" msprop:Generator_RowEvHandlerName="RepairFrequencyRowChangeEventHandler" msprop:Generator_RowDeletedName="RepairFrequencyRowDeleted" msprop:Generator_UserTableName="RepairFrequency" msprop:Generator_RowChangedName="RepairFrequencyRowChanged" msprop:Generator_RowEvArgName="RepairFrequencyRowChangeEvent" msprop:Generator_RowClassName="RepairFrequencyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InventoryID" msprop:Generator_ColumnVarNameInTable="columnInventoryID" msprop:Generator_ColumnPropNameInRow="InventoryID" msprop:Generator_ColumnPropNameInTable="InventoryIDColumn" msprop:Generator_UserColumnName="InventoryID" type="xs:int" />
+              <xs:element name="RepairDate" msprop:Generator_ColumnVarNameInTable="columnRepairDate" msprop:Generator_ColumnPropNameInRow="RepairDate" msprop:Generator_ColumnPropNameInTable="RepairDateColumn" msprop:Generator_UserColumnName="RepairDate" type="xs:dateTime" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="Inventory" msprop:Generator_TableClassName="InventoryDataTable" msprop:Generator_TableVarName="tableInventory" msprop:Generator_TablePropName="Inventory" msprop:Generator_RowDeletingName="InventoryRowDeleting" msprop:Generator_RowChangingName="InventoryRowChanging" msprop:Generator_RowEvHandlerName="InventoryRowChangeEventHandler" msprop:Generator_RowDeletedName="InventoryRowDeleted" msprop:Generator_UserTableName="Inventory" msprop:Generator_RowChangedName="InventoryRowChanged" msprop:Generator_RowEvArgName="InventoryRowChangeEvent" msprop:Generator_RowClassName="InventoryRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="InventoryID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnInventoryID" msprop:Generator_ColumnPropNameInRow="InventoryID" msprop:Generator_ColumnPropNameInTable="InventoryIDColumn" msprop:Generator_UserColumnName="InventoryID" type="xs:int" />
+              <xs:element name="EntryDate" msprop:Generator_ColumnVarNameInTable="columnEntryDate" msprop:Generator_ColumnPropNameInRow="EntryDate" msprop:Generator_ColumnPropNameInTable="EntryDateColumn" msprop:Generator_UserColumnName="EntryDate" type="xs:dateTime" />
+              <xs:element name="WithdrawalDate" msprop:Generator_ColumnVarNameInTable="columnWithdrawalDate" msprop:Generator_ColumnPropNameInRow="WithdrawalDate" msprop:Generator_ColumnPropNameInTable="WithdrawalDateColumn" msprop:Generator_UserColumnName="WithdrawalDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="GuaranteeDate" msprop:Generator_ColumnVarNameInTable="columnGuaranteeDate" msprop:Generator_ColumnPropNameInRow="GuaranteeDate" msprop:Generator_ColumnPropNameInTable="GuaranteeDateColumn" msprop:Generator_UserColumnName="GuaranteeDate" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InventoryCardID" msprop:Generator_ColumnVarNameInTable="columnInventoryCardID" msprop:Generator_ColumnPropNameInRow="InventoryCardID" msprop:Generator_ColumnPropNameInTable="InventoryCardIDColumn" msprop:Generator_UserColumnName="InventoryCardID" type="xs:int" minOccurs="0" />
+              <xs:element name="ResponsibleID" msprop:Generator_ColumnVarNameInTable="columnResponsibleID" msprop:Generator_ColumnPropNameInRow="ResponsibleID" msprop:Generator_ColumnPropNameInTable="ResponsibleIDColumn" msprop:Generator_UserColumnName="ResponsibleID" type="xs:int" minOccurs="0" />
+              <xs:element name="SerialNumber" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_UserColumnName="SerialNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InventoryName" msprop:Generator_ColumnVarNameInTable="columnInventoryName" msprop:Generator_ColumnPropNameInRow="InventoryName" msprop:Generator_ColumnPropNameInTable="InventoryNameColumn" msprop:Generator_UserColumnName="InventoryName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Condition" msprop:Generator_ColumnVarNameInTable="columnCondition" msprop:Generator_ColumnPropNameInRow="Condition" msprop:Generator_ColumnPropNameInTable="ConditionColumn" msprop:Generator_UserColumnName="Condition" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="16" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="SpecialSoftware" msprop:Generator_ColumnVarNameInTable="columnSpecialSoftware" msprop:Generator_ColumnPropNameInRow="SpecialSoftware" msprop:Generator_ColumnPropNameInTable="SpecialSoftwareColumn" msprop:Generator_UserColumnName="SpecialSoftware" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="InventoryNumber" msprop:Generator_ColumnVarNameInTable="columnInventoryNumber" msprop:Generator_ColumnPropNameInRow="InventoryNumber" msprop:Generator_ColumnPropNameInTable="InventoryNumberColumn" msprop:Generator_UserColumnName="InventoryNumber" type="xs:long" minOccurs="0" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PurchaseCompany" msprop:Generator_TableClassName="PurchaseCompanyDataTable" msprop:Generator_TableVarName="tablePurchaseCompany" msprop:Generator_TablePropName="PurchaseCompany" msprop:Generator_RowDeletingName="PurchaseCompanyRowDeleting" msprop:Generator_RowChangingName="PurchaseCompanyRowChanging" msprop:Generator_RowEvHandlerName="PurchaseCompanyRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseCompanyRowDeleted" msprop:Generator_UserTableName="PurchaseCompany" msprop:Generator_RowChangedName="PurchaseCompanyRowChanged" msprop:Generator_RowEvArgName="PurchaseCompanyRowChangeEvent" msprop:Generator_RowClassName="PurchaseCompanyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PurchaseCompanyID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPurchaseCompanyID" msprop:Generator_ColumnPropNameInRow="PurchaseCompanyID" msprop:Generator_ColumnPropNameInTable="PurchaseCompanyIDColumn" msprop:Generator_UserColumnName="PurchaseCompanyID" type="xs:int" />
+              <xs:element name="CompanyName" msprop:Generator_ColumnVarNameInTable="columnCompanyName" msprop:Generator_ColumnPropNameInRow="CompanyName" msprop:Generator_ColumnPropNameInTable="CompanyNameColumn" msprop:Generator_UserColumnName="CompanyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="PurchaseMemo" msprop:Generator_TableClassName="PurchaseMemoDataTable" msprop:Generator_TableVarName="tablePurchaseMemo" msprop:Generator_TablePropName="PurchaseMemo" msprop:Generator_RowDeletingName="PurchaseMemoRowDeleting" msprop:Generator_RowChangingName="PurchaseMemoRowChanging" msprop:Generator_RowEvHandlerName="PurchaseMemoRowChangeEventHandler" msprop:Generator_RowDeletedName="PurchaseMemoRowDeleted" msprop:Generator_UserTableName="PurchaseMemo" msprop:Generator_RowChangedName="PurchaseMemoRowChanged" msprop:Generator_RowEvArgName="PurchaseMemoRowChangeEvent" msprop:Generator_RowClassName="PurchaseMemoRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="PurchaseMemoID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnPurchaseMemoID" msprop:Generator_ColumnPropNameInRow="PurchaseMemoID" msprop:Generator_ColumnPropNameInTable="PurchaseMemoIDColumn" msprop:Generator_UserColumnName="PurchaseMemoID" type="xs:int" />
+              <xs:element name="Cost" msprop:Generator_ColumnVarNameInTable="columnCost" msprop:Generator_ColumnPropNameInRow="Cost" msprop:Generator_ColumnPropNameInTable="CostColumn" msprop:Generator_UserColumnName="Cost" type="xs:decimal" />
+              <xs:element name="DateOfPurchase" msprop:Generator_ColumnVarNameInTable="columnDateOfPurchase" msprop:Generator_ColumnPropNameInRow="DateOfPurchase" msprop:Generator_ColumnPropNameInTable="DateOfPurchaseColumn" msprop:Generator_UserColumnName="DateOfPurchase" type="xs:dateTime" />
+              <xs:element name="PurchasableInventoryID" msprop:Generator_ColumnVarNameInTable="columnPurchasableInventoryID" msprop:Generator_ColumnPropNameInRow="PurchasableInventoryID" msprop:Generator_ColumnPropNameInTable="PurchasableInventoryIDColumn" msprop:Generator_UserColumnName="PurchasableInventoryID" type="xs:int" />
+              <xs:element name="PurchaseCompanyID" msprop:Generator_ColumnVarNameInTable="columnPurchaseCompanyID" msprop:Generator_ColumnPropNameInRow="PurchaseCompanyID" msprop:Generator_ColumnPropNameInTable="PurchaseCompanyIDColumn" msprop:Generator_UserColumnName="PurchaseCompanyID" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RepairCompany" msprop:Generator_TableClassName="RepairCompanyDataTable" msprop:Generator_TableVarName="tableRepairCompany" msprop:Generator_TablePropName="RepairCompany" msprop:Generator_RowDeletingName="RepairCompanyRowDeleting" msprop:Generator_RowChangingName="RepairCompanyRowChanging" msprop:Generator_RowEvHandlerName="RepairCompanyRowChangeEventHandler" msprop:Generator_RowDeletedName="RepairCompanyRowDeleted" msprop:Generator_UserTableName="RepairCompany" msprop:Generator_RowChangedName="RepairCompanyRowChanged" msprop:Generator_RowEvArgName="RepairCompanyRowChangeEvent" msprop:Generator_RowClassName="RepairCompanyRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RepairCompanyID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRepairCompanyID" msprop:Generator_ColumnPropNameInRow="RepairCompanyID" msprop:Generator_ColumnPropNameInTable="RepairCompanyIDColumn" msprop:Generator_UserColumnName="RepairCompanyID" type="xs:int" />
+              <xs:element name="RepairCompanyName" msprop:Generator_ColumnVarNameInTable="columnRepairCompanyName" msprop:Generator_ColumnPropNameInRow="RepairCompanyName" msprop:Generator_ColumnPropNameInTable="RepairCompanyNameColumn" msprop:Generator_UserColumnName="RepairCompanyName">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="30" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="RepairNote" msprop:Generator_TableClassName="RepairNoteDataTable" msprop:Generator_TableVarName="tableRepairNote" msprop:Generator_TablePropName="RepairNote" msprop:Generator_RowDeletingName="RepairNoteRowDeleting" msprop:Generator_RowChangingName="RepairNoteRowChanging" msprop:Generator_RowEvHandlerName="RepairNoteRowChangeEventHandler" msprop:Generator_RowDeletedName="RepairNoteRowDeleted" msprop:Generator_UserTableName="RepairNote" msprop:Generator_RowChangedName="RepairNoteRowChanged" msprop:Generator_RowEvArgName="RepairNoteRowChangeEvent" msprop:Generator_RowClassName="RepairNoteRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="RepairNoteID" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnRepairNoteID" msprop:Generator_ColumnPropNameInRow="RepairNoteID" msprop:Generator_ColumnPropNameInTable="RepairNoteIDColumn" msprop:Generator_UserColumnName="RepairNoteID" type="xs:int" />
+              <xs:element name="RepairCompanyID" msprop:Generator_ColumnVarNameInTable="columnRepairCompanyID" msprop:Generator_ColumnPropNameInRow="RepairCompanyID" msprop:Generator_ColumnPropNameInTable="RepairCompanyIDColumn" msprop:Generator_UserColumnName="RepairCompanyID" type="xs:int" />
+              <xs:element name="InventoryID" msprop:Generator_ColumnVarNameInTable="columnInventoryID" msprop:Generator_ColumnPropNameInRow="InventoryID" msprop:Generator_ColumnPropNameInTable="InventoryIDColumn" msprop:Generator_UserColumnName="InventoryID" type="xs:int" />
+              <xs:element name="RepairCost" msprop:Generator_ColumnVarNameInTable="columnRepairCost" msprop:Generator_ColumnPropNameInRow="RepairCost" msprop:Generator_ColumnPropNameInTable="RepairCostColumn" msprop:Generator_UserColumnName="RepairCost" type="xs:decimal" />
+              <xs:element name="RepairDate" msprop:Generator_ColumnVarNameInTable="columnRepairDate" msprop:Generator_ColumnPropNameInRow="RepairDate" msprop:Generator_ColumnPropNameInTable="RepairDateColumn" msprop:Generator_UserColumnName="RepairDate" type="xs:dateTime" />
+              <xs:element name="Notes" msprop:Generator_ColumnVarNameInTable="columnNotes" msprop:Generator_ColumnPropNameInRow="Notes" msprop:Generator_ColumnPropNameInTable="NotesColumn" msprop:Generator_UserColumnName="Notes" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="2147483647" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:Inventory" />
+      <xs:field xpath="mstns:InventoryID" />
+    </xs:unique>
+    <xs:unique name="PurchaseCompany_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PurchaseCompany" />
+      <xs:field xpath="mstns:PurchaseCompanyID" />
+    </xs:unique>
+    <xs:unique name="PurchaseMemo_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:PurchaseMemo" />
+      <xs:field xpath="mstns:PurchaseMemoID" />
+    </xs:unique>
+    <xs:unique name="RepairCompany_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RepairCompany" />
+      <xs:field xpath="mstns:RepairCompanyID" />
+    </xs:unique>
+    <xs:unique name="RepairNote_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:RepairNote" />
+      <xs:field xpath="mstns:RepairNoteID" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_PurchaseCompany_PurchaseMemo" msdata:parent="PurchaseCompany" msdata:child="PurchaseMemo" msdata:parentkey="PurchaseCompanyID" msdata:childkey="PurchaseCompanyID" msprop:Generator_UserChildTable="PurchaseMemo" msprop:Generator_ChildPropName="GetPurchaseMemoRows" msprop:Generator_UserRelationName="FK_PurchaseCompany_PurchaseMemo" msprop:Generator_ParentPropName="PurchaseCompanyRow" msprop:Generator_RelationVarName="relationFK_PurchaseCompany_PurchaseMemo" msprop:Generator_UserParentTable="PurchaseCompany" />
+      <msdata:Relationship name="FK_RepairCompany_RepairNote" msdata:parent="RepairCompany" msdata:child="RepairNote" msdata:parentkey="RepairCompanyID" msdata:childkey="RepairCompanyID" msprop:Generator_UserChildTable="RepairNote" msprop:Generator_ChildPropName="GetRepairNoteRows" msprop:Generator_UserRelationName="FK_RepairCompany_RepairNote" msprop:Generator_ParentPropName="RepairCompanyRow" msprop:Generator_RelationVarName="relationFK_RepairCompany_RepairNote" msprop:Generator_UserParentTable="RepairCompany" />
+      <msdata:Relationship name="FK_Inventory_PurchaseMemo" msdata:parent="Inventory" msdata:child="PurchaseMemo" msdata:parentkey="InventoryID" msdata:childkey="PurchasableInventoryID" msprop:Generator_UserChildTable="PurchaseMemo" msprop:Generator_ChildPropName="GetPurchaseMemoRows" msprop:Generator_UserRelationName="FK_Inventory_PurchaseMemo" msprop:Generator_ParentPropName="InventoryRow" msprop:Generator_RelationVarName="relationFK_Inventory_PurchaseMemo" msprop:Generator_UserParentTable="Inventory" />
+      <msdata:Relationship name="FK_RepairNote_Inventory" msdata:parent="Inventory" msdata:child="RepairNote" msdata:parentkey="InventoryID" msdata:childkey="InventoryID" msprop:Generator_UserChildTable="RepairNote" msprop:Generator_ChildPropName="GetRepairNoteRows" msprop:Generator_UserRelationName="FK_RepairNote_Inventory" msprop:Generator_ParentPropName="InventoryRow" msprop:Generator_RelationVarName="relationFK_RepairNote_Inventory" msprop:Generator_UserParentTable="Inventory" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

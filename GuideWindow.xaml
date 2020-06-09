@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Course_project"
         mc:Ignorable="d"
-        Title="GuideWindow" Height="450" Width="1330" WindowStartupLocation="CenterScreen">
+        Title="Справочники" Height="450" Width="1330" WindowStartupLocation="CenterScreen" >
     <Window.Resources>
         <Style TargetType="Button">
             <Setter Property="Width" Value="Auto" />
@@ -20,7 +20,7 @@
             <RowDefinition/>
             <RowDefinition Height="0.1*"/>
         </Grid.RowDefinitions>
-        
+
         <DataGrid Grid.Row="0" Name="MainDataGrid" AlternatingRowBackground="#FFD5FB94" RowBackground="#FF86FBC6" Background="#FF82FFBB" FontWeight="Bold">
             <DataGrid.Resources>
                 <Style TargetType="DataGridColumnHeader">
@@ -28,6 +28,7 @@
                     <Setter Property="Background" Value="LightGreen"/>
                 </Style>
             </DataGrid.Resources>
+            
         </DataGrid>
 
         <Grid x:Name="GuideWithOptionsGrid" Grid.Row="1" Background="#FF98F5DC">
@@ -60,23 +61,14 @@
 
             <Grid x:Name="OptionsGrid" Grid.Column="1">
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition />
-                    <ColumnDefinition />
+                    <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
-
-                <Label Grid.Column="0" Content="Действие:" VerticalAlignment="Center" FontWeight="Bold" HorizontalAlignment="Right" FontSize="15"/>
-                <ComboBox Name="OptionsComboBox" Grid.Column="1" Margin="2 4">
-                    <ComboBoxItem Tag="Add" Content="Добавить запись" Selected="OptionsComboBoxItem_Selected"/>
-                    <ComboBoxItem Tag="Edit" Content="Удалить записи" Selected="OptionsComboBoxItem_Selected"/>
-                    <ComboBoxItem Tag="Delete" Content="Изменить записи" Selected="OptionsComboBoxItem_Selected"/>
-                    <ComboBoxItem Tag="Guarantee" Content="Проверить гарантию" Selected="OptionsComboBoxItem_Selected"/>
-                </ComboBox>
-
-                <Button Grid.Column="2" Content="Выполнить" Name="ApplyBtn" Style="{StaticResource RoundButtonTemplate}" Margin="5"/>
+                <Button Grid.Column="0" Content="Редактировать таблицу" Name="ApplyBtn" Style="{StaticResource RoundButtonTemplate}" Margin="5" Click="ApplyBtn_Click" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove"/>
+                <Label Name="IsEditingLabel"  Content="Таблица редактируется" Foreground="Red" Grid.Column="1" Visibility="Hidden" HorizontalAlignment="Center" VerticalAlignment="Center" FontWeight="Bold"/>
             </Grid>
 
-            <Button Name="ToMainMenuBtn" Content="В главное меню" Grid.Column="2" Style="{StaticResource RoundButtonTemplate}" Width="120" Margin="3" Click="ToMainMenuBtn_Click"/>
+            <Button Name="ToMainMenuBtn" Content="В главное меню" Grid.Column="2" Style="{StaticResource RoundButtonTemplate}" Width="120" Margin="3" Click="ToMainMenuBtn_Click"  MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove"/>
         </Grid>
     </Grid>
 </Window>

@@ -1,0 +1,1069 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище InventoryDBContext" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Department_ID" />
+          </Key>
+          <Property Name="Department_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="InventoryID" />
+          </Key>
+          <Property Name="InventoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EntryDate" Type="date" Nullable="false" />
+          <Property Name="WithdrawalDate" Type="date" />
+          <Property Name="GuaranteeDate" Type="date" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="200" />
+          <Property Name="InventoryCardID" Type="int" />
+          <Property Name="ResponsibleID" Type="int" />
+          <Property Name="SerialNumber" Type="char" MaxLength="20" />
+          <Property Name="InventoryName" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Condition" Type="char" MaxLength="16" />
+          <Property Name="SpecialSoftware" Type="char" MaxLength="100" />
+          <Property Name="InventoryNumber" Type="bigint" />
+        </EntityType>
+        <EntityType Name="InventoryCard">
+          <Key>
+            <PropertyRef Name="InventoryCardID" />
+          </Key>
+          <Property Name="InventoryCardID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CreationDate" Type="date" Nullable="false" />
+          <Property Name="InventorycardNumber" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MovementNote">
+          <Key>
+            <PropertyRef Name="MovementNoteID" />
+          </Key>
+          <Property Name="MovementNoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MovementDate" Type="date" Nullable="false" />
+          <Property Name="PreviousResponsibleID" Type="int" Nullable="false" />
+          <Property Name="CurrentResponsibleID" Type="int" Nullable="false" />
+          <Property Name="InventoryID" Type="int" Nullable="false" />
+          <Property Name="Notes" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="PurchaseCompany">
+          <Key>
+            <PropertyRef Name="PurchaseCompanyID" />
+          </Key>
+          <Property Name="PurchaseCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CompanyName" Type="char" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseMemo">
+          <Key>
+            <PropertyRef Name="PurchaseMemoID" />
+          </Key>
+          <Property Name="PurchaseMemoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Cost" Type="money" Nullable="false" />
+          <Property Name="DateOfPurchase" Type="date" Nullable="false" />
+          <Property Name="PurchasableInventoryID" Type="int" Nullable="false" />
+          <Property Name="PurchaseCompanyID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RepairCompany">
+          <Key>
+            <PropertyRef Name="RepairCompanyID" />
+          </Key>
+          <Property Name="RepairCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RepairCompanyName" Type="char" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RepairNote">
+          <Key>
+            <PropertyRef Name="RepairNoteID" />
+          </Key>
+          <Property Name="RepairNoteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RepairCompanyID" Type="int" Nullable="false" />
+          <Property Name="InventoryID" Type="int" Nullable="false" />
+          <Property Name="RepairCost" Type="money" Nullable="false" />
+          <Property Name="RepairDate" Type="date" Nullable="false" />
+          <Property Name="Notes" Type="text" />
+        </EntityType>
+        <EntityType Name="Responsible">
+          <Key>
+            <PropertyRef Name="ResponsibleID" />
+          </Key>
+          <Property Name="ResponsibleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FCs" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CabinetNumber" Type="int" Nullable="false" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Department_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Login" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="8" Nullable="false" />
+          <Property Name="Type" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WriteOffMemo">
+          <Key>
+            <PropertyRef Name="WriteOffMemoID" />
+          </Key>
+          <Property Name="WriteOffMemoID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="InventoryID" Type="int" Nullable="false" />
+          <Property Name="WriteOffDate" Type="date" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.group_inventory_by_resp" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="group_inventory_by_resp">
+          <Key>
+            <PropertyRef Name="Инициалы" />
+            <PropertyRef Name="Название оборудования" />
+          </Key>
+          <Property Name="Инициалы" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Название оборудования" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.inventory_by_resp_by_address" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="inventory_by_resp_by_address">
+          <Key>
+            <PropertyRef Name="Адрес" />
+            <PropertyRef Name="Инициалы" />
+            <PropertyRef Name="Название оборудования" />
+          </Key>
+          <Property Name="Адрес" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Инициалы" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Название оборудования" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.inventory_without_guarantee_by_resp" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="inventory_without_guarantee_by_resp">
+          <Key>
+            <PropertyRef Name="Инициалы" />
+            <PropertyRef Name="Название оборудования" />
+          </Key>
+          <Property Name="Инициалы" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Дата окончания гарантии" Type="date" />
+          <Property Name="Название оборудования" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.inventory_without_repairs" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="inventory_without_repairs">
+          <Key>
+            <PropertyRef Name="Название оборудования" />
+          </Key>
+          <Property Name="Название оборудования" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Инвентарный номер" Type="bigint" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.purchased_inventory_by_years" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="purchased_inventory_by_years">
+          <Key>
+            <PropertyRef Name="Название оборудования" />
+          </Key>
+          <Property Name="Год" Type="int" />
+          <Property Name="Название оборудования" Type="char" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.responsibles_who_needed_repair" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="responsibles_who_needed_repair">
+          <Key>
+            <PropertyRef Name="Инициалы ответственного" />
+          </Key>
+          <Property Name="Инициалы ответственного" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "InventoryDB.dbo.summary_for_inventory_repairs" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="summary_for_inventory_repairs">
+          <Key>
+            <PropertyRef Name="Название оборудования" />
+          </Key>
+          <Property Name="Название оборудования" Type="char" MaxLength="100" Nullable="false" />
+          <Property Name="Инвентарный номер" Type="bigint" />
+          <Property Name="Суммарные затраты на ремонт" Type="money" />
+        </EntityType>
+        <Association Name="FK_CurrentResponsible_MovementNote">
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="1" />
+          <End Role="MovementNote" Type="Self.MovementNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsible">
+              <PropertyRef Name="ResponsibleID" />
+            </Principal>
+            <Dependent Role="MovementNote">
+              <PropertyRef Name="CurrentResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Department_Responsible">
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Responsible">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_MovementNote">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MovementNote" Type="Self.MovementNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="MovementNote">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_PurchaseMemo">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PurchaseMemo" Type="Self.PurchaseMemo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="PurchaseMemo">
+              <PropertyRef Name="PurchasableInventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_WriteOffMemo">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WriteOffMemo" Type="Self.WriteOffMemo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="WriteOffMemo">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryCard_Inventory">
+          <End Role="InventoryCard" Type="Self.InventoryCard" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryCard">
+              <PropertyRef Name="InventoryCardID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="InventoryCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreviousResponsible_MovementNote">
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="1" />
+          <End Role="MovementNote" Type="Self.MovementNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsible">
+              <PropertyRef Name="ResponsibleID" />
+            </Principal>
+            <Dependent Role="MovementNote">
+              <PropertyRef Name="PreviousResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseCompany_PurchaseMemo">
+          <End Role="PurchaseCompany" Type="Self.PurchaseCompany" Multiplicity="1" />
+          <End Role="PurchaseMemo" Type="Self.PurchaseMemo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseCompany">
+              <PropertyRef Name="PurchaseCompanyID" />
+            </Principal>
+            <Dependent Role="PurchaseMemo">
+              <PropertyRef Name="PurchaseCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepairCompany_RepairNote">
+          <End Role="RepairCompany" Type="Self.RepairCompany" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RepairNote" Type="Self.RepairNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RepairCompany">
+              <PropertyRef Name="RepairCompanyID" />
+            </Principal>
+            <Dependent Role="RepairNote">
+              <PropertyRef Name="RepairCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepairNote_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="RepairNote" Type="Self.RepairNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="RepairNote">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responsible_Inventory">
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsible">
+              <PropertyRef Name="ResponsibleID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="CheckGuarantee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="FindExpired" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="ShowWrittenOffInventory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="Хранилище InventoryDBContextContainer">
+          <EntitySet Name="Department" EntityType="Self.Department" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InventoryCard" EntityType="Self.InventoryCard" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovementNote" EntityType="Self.MovementNote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseCompany" EntityType="Self.PurchaseCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseMemo" EntityType="Self.PurchaseMemo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepairCompany" EntityType="Self.RepairCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RepairNote" EntityType="Self.RepairNote" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Responsible" EntityType="Self.Responsible" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="WriteOffMemo" EntityType="Self.WriteOffMemo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="group_inventory_by_resp" EntityType="Self.group_inventory_by_resp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [group_inventory_by_resp].[Инициалы] AS [Инициалы], 
+    [group_inventory_by_resp].[Название оборудования] AS [Название оборудования]
+    FROM [dbo].[group_inventory_by_resp] AS [group_inventory_by_resp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="inventory_by_resp_by_address" EntityType="Self.inventory_by_resp_by_address" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [inventory_by_resp_by_address].[Адрес] AS [Адрес], 
+    [inventory_by_resp_by_address].[Инициалы] AS [Инициалы], 
+    [inventory_by_resp_by_address].[Название оборудования] AS [Название оборудования]
+    FROM [dbo].[inventory_by_resp_by_address] AS [inventory_by_resp_by_address]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="inventory_without_guarantee_by_resp" EntityType="Self.inventory_without_guarantee_by_resp" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [inventory_without_guarantee_by_resp].[Инициалы] AS [Инициалы], 
+    [inventory_without_guarantee_by_resp].[Дата окончания гарантии] AS [Дата окончания гарантии], 
+    [inventory_without_guarantee_by_resp].[Название оборудования] AS [Название оборудования]
+    FROM [dbo].[inventory_without_guarantee_by_resp] AS [inventory_without_guarantee_by_resp]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="inventory_without_repairs" EntityType="Self.inventory_without_repairs" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [inventory_without_repairs].[Название оборудования] AS [Название оборудования], 
+    [inventory_without_repairs].[Инвентарный номер] AS [Инвентарный номер]
+    FROM [dbo].[inventory_without_repairs] AS [inventory_without_repairs]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="purchased_inventory_by_years" EntityType="Self.purchased_inventory_by_years" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [purchased_inventory_by_years].[Год] AS [Год], 
+    [purchased_inventory_by_years].[Название оборудования] AS [Название оборудования]
+    FROM [dbo].[purchased_inventory_by_years] AS [purchased_inventory_by_years]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="responsibles_who_needed_repair" EntityType="Self.responsibles_who_needed_repair" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [responsibles_who_needed_repair].[Инициалы ответственного] AS [Инициалы ответственного]
+    FROM [dbo].[responsibles_who_needed_repair] AS [responsibles_who_needed_repair]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="summary_for_inventory_repairs" EntityType="Self.summary_for_inventory_repairs" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [summary_for_inventory_repairs].[Название оборудования] AS [Название оборудования], 
+    [summary_for_inventory_repairs].[Инвентарный номер] AS [Инвентарный номер], 
+    [summary_for_inventory_repairs].[Суммарные затраты на ремонт] AS [Суммарные затраты на ремонт]
+    FROM [dbo].[summary_for_inventory_repairs] AS [summary_for_inventory_repairs]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_CurrentResponsible_MovementNote" Association="Self.FK_CurrentResponsible_MovementNote">
+            <End Role="Responsible" EntitySet="Responsible" />
+            <End Role="MovementNote" EntitySet="MovementNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Department_Responsible" Association="Self.FK_Department_Responsible">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Responsible" EntitySet="Responsible" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_MovementNote" Association="Self.FK_Inventory_MovementNote">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="MovementNote" EntitySet="MovementNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_PurchaseMemo" Association="Self.FK_Inventory_PurchaseMemo">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="PurchaseMemo" EntitySet="PurchaseMemo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_WriteOffMemo" Association="Self.FK_Inventory_WriteOffMemo">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="WriteOffMemo" EntitySet="WriteOffMemo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryCard_Inventory" Association="Self.FK_InventoryCard_Inventory">
+            <End Role="InventoryCard" EntitySet="InventoryCard" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreviousResponsible_MovementNote" Association="Self.FK_PreviousResponsible_MovementNote">
+            <End Role="Responsible" EntitySet="Responsible" />
+            <End Role="MovementNote" EntitySet="MovementNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseCompany_PurchaseMemo" Association="Self.FK_PurchaseCompany_PurchaseMemo">
+            <End Role="PurchaseCompany" EntitySet="PurchaseCompany" />
+            <End Role="PurchaseMemo" EntitySet="PurchaseMemo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepairCompany_RepairNote" Association="Self.FK_RepairCompany_RepairNote">
+            <End Role="RepairCompany" EntitySet="RepairCompany" />
+            <End Role="RepairNote" EntitySet="RepairNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepairNote_Inventory" Association="Self.FK_RepairNote_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="RepairNote" EntitySet="RepairNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responsible_Inventory" Association="Self.FK_Responsible_Inventory">
+            <End Role="Responsible" EntitySet="Responsible" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InventoryDBContext" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Department">
+          <Key>
+            <PropertyRef Name="Department_ID" />
+          </Key>
+          <Property Name="Department_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Responsible" Relationship="Self.FK_Department_Responsible" FromRole="Department" ToRole="Responsible" />
+        </EntityType>
+        <EntityType Name="Inventory">
+          <Key>
+            <PropertyRef Name="InventoryID" />
+          </Key>
+          <Property Name="InventoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EntryDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="WithdrawalDate" Type="DateTime" Precision="0" />
+          <Property Name="GuaranteeDate" Type="DateTime" Precision="0" />
+          <Property Name="Notes" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="InventoryCardID" Type="Int32" />
+          <Property Name="ResponsibleID" Type="Int32" />
+          <Property Name="SerialNumber" Type="String" MaxLength="20" FixedLength="true" Unicode="false" />
+          <Property Name="InventoryName" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Condition" Type="String" MaxLength="16" FixedLength="true" Unicode="false" />
+          <Property Name="SpecialSoftware" Type="String" MaxLength="100" FixedLength="true" Unicode="false" />
+          <Property Name="InventoryNumber" Type="Int64" />
+          <NavigationProperty Name="MovementNote" Relationship="Self.FK_Inventory_MovementNote" FromRole="Inventory" ToRole="MovementNote" />
+          <NavigationProperty Name="PurchaseMemo" Relationship="Self.FK_Inventory_PurchaseMemo" FromRole="Inventory" ToRole="PurchaseMemo" />
+          <NavigationProperty Name="WriteOffMemo" Relationship="Self.FK_Inventory_WriteOffMemo" FromRole="Inventory" ToRole="WriteOffMemo" />
+          <NavigationProperty Name="InventoryCard" Relationship="Self.FK_InventoryCard_Inventory" FromRole="Inventory" ToRole="InventoryCard" />
+          <NavigationProperty Name="RepairNote" Relationship="Self.FK_RepairNote_Inventory" FromRole="Inventory" ToRole="RepairNote" />
+          <NavigationProperty Name="Responsible" Relationship="Self.FK_Responsible_Inventory" FromRole="Inventory" ToRole="Responsible" />
+        </EntityType>
+        <EntityType Name="InventoryCard">
+          <Key>
+            <PropertyRef Name="InventoryCardID" />
+          </Key>
+          <Property Name="InventoryCardID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CreationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="InventoryCardNumber" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_InventoryCard_Inventory" FromRole="InventoryCard" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="MovementNote">
+          <Key>
+            <PropertyRef Name="MovementNoteID" />
+          </Key>
+          <Property Name="MovementNoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MovementDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PreviousResponsibleID" Type="Int32" Nullable="false" />
+          <Property Name="CurrentResponsibleID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryID" Type="Int32" Nullable="false" />
+          <Property Name="Notes" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_MovementNote" FromRole="MovementNote" ToRole="Inventory" />
+          <NavigationProperty Name="Responsible" Relationship="Self.FK_CurrentResponsible_MovementNote" FromRole="MovementNote" ToRole="Responsible" />
+          <NavigationProperty Name="Responsible1" Relationship="Self.FK_PreviousResponsible_MovementNote" FromRole="MovementNote" ToRole="Responsible" />
+        </EntityType>
+        <EntityType Name="PurchaseCompany">
+          <Key>
+            <PropertyRef Name="PurchaseCompanyID" />
+          </Key>
+          <Property Name="PurchaseCompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="PurchaseMemo" Relationship="Self.FK_PurchaseCompany_PurchaseMemo" FromRole="PurchaseCompany" ToRole="PurchaseMemo" />
+        </EntityType>
+        <EntityType Name="PurchaseMemo">
+          <Key>
+            <PropertyRef Name="PurchaseMemoID" />
+          </Key>
+          <Property Name="PurchaseMemoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Cost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="DateOfPurchase" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PurchasableInventoryID" Type="Int32" Nullable="false" />
+          <Property Name="PurchaseCompanyID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_PurchaseMemo" FromRole="PurchaseMemo" ToRole="Inventory" />
+          <NavigationProperty Name="PurchaseCompany" Relationship="Self.FK_PurchaseCompany_PurchaseMemo" FromRole="PurchaseMemo" ToRole="PurchaseCompany" />
+        </EntityType>
+        <EntityType Name="RepairCompany">
+          <Key>
+            <PropertyRef Name="RepairCompanyID" />
+          </Key>
+          <Property Name="RepairCompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RepairCompanyName" Type="String" MaxLength="30" FixedLength="true" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="RepairNote" Relationship="Self.FK_RepairCompany_RepairNote" FromRole="RepairCompany" ToRole="RepairNote" />
+        </EntityType>
+        <EntityType Name="RepairNote">
+          <Key>
+            <PropertyRef Name="RepairNoteID" />
+          </Key>
+          <Property Name="RepairNoteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RepairCompanyID" Type="Int32" Nullable="false" />
+          <Property Name="InventoryID" Type="Int32" Nullable="false" />
+          <Property Name="RepairCost" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="RepairDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_RepairNote_Inventory" FromRole="RepairNote" ToRole="Inventory" />
+          <NavigationProperty Name="RepairCompany" Relationship="Self.FK_RepairCompany_RepairNote" FromRole="RepairNote" ToRole="RepairCompany" />
+        </EntityType>
+        <EntityType Name="Responsible">
+          <Key>
+            <PropertyRef Name="ResponsibleID" />
+          </Key>
+          <Property Name="ResponsibleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FCs" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CabinetNumber" Type="Int32" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Department_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Department" Relationship="Self.FK_Department_Responsible" FromRole="Responsible" ToRole="Department" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Responsible_Inventory" FromRole="Responsible" ToRole="Inventory" />
+          <NavigationProperty Name="MovementNote" Relationship="Self.FK_CurrentResponsible_MovementNote" FromRole="Responsible" ToRole="MovementNote" />
+          <NavigationProperty Name="MovementNote1" Relationship="Self.FK_PreviousResponsible_MovementNote" FromRole="Responsible" ToRole="MovementNote" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Login" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="WriteOffMemo">
+          <Key>
+            <PropertyRef Name="WriteOffMemoID" />
+          </Key>
+          <Property Name="WriteOffMemoID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="InventoryID" Type="Int32" Nullable="false" />
+          <Property Name="WriteOffDate" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Inventory" Relationship="Self.FK_Inventory_WriteOffMemo" FromRole="WriteOffMemo" ToRole="Inventory" />
+        </EntityType>
+        <EntityType Name="group_inventory_by_resp">
+          <Key>
+            <PropertyRef Name="Инициалы" />
+            <PropertyRef Name="Название_оборудования" />
+          </Key>
+          <Property Name="Инициалы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Название_оборудования" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventory_by_resp_by_address">
+          <Key>
+            <PropertyRef Name="Адрес" />
+            <PropertyRef Name="Инициалы" />
+            <PropertyRef Name="Название_оборудования" />
+          </Key>
+          <Property Name="Адрес" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Инициалы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Название_оборудования" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventory_without_guarantee_by_resp">
+          <Key>
+            <PropertyRef Name="Инициалы" />
+            <PropertyRef Name="Название_оборудования" />
+          </Key>
+          <Property Name="Инициалы" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Дата_окончания_гарантии" Type="DateTime" Precision="0" />
+          <Property Name="Название_оборудования" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="inventory_without_repairs">
+          <Key>
+            <PropertyRef Name="Название_оборудования" />
+          </Key>
+          <Property Name="Название_оборудования" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Инвентарный_номер" Type="Int64" />
+        </EntityType>
+        <EntityType Name="purchased_inventory_by_years">
+          <Key>
+            <PropertyRef Name="Название_оборудования" />
+          </Key>
+          <Property Name="Год" Type="Int32" />
+          <Property Name="Название_оборудования" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="responsibles_who_needed_repair">
+          <Key>
+            <PropertyRef Name="Инициалы_ответственного" />
+          </Key>
+          <Property Name="Инициалы_ответственного" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="summary_for_inventory_repairs">
+          <Key>
+            <PropertyRef Name="Название_оборудования" />
+          </Key>
+          <Property Name="Название_оборудования" Type="String" MaxLength="100" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Инвентарный_номер" Type="Int64" />
+          <Property Name="Суммарные_затраты_на_ремонт" Type="Decimal" Precision="19" Scale="4" />
+        </EntityType>
+        <Association Name="FK_Department_Responsible">
+          <End Role="Department" Type="Self.Department" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Department">
+              <PropertyRef Name="Department_ID" />
+            </Principal>
+            <Dependent Role="Responsible">
+              <PropertyRef Name="Department_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_MovementNote">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="MovementNote" Type="Self.MovementNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="MovementNote">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_PurchaseMemo">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="PurchaseMemo" Type="Self.PurchaseMemo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="PurchaseMemo">
+              <PropertyRef Name="PurchasableInventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Inventory_WriteOffMemo">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="WriteOffMemo" Type="Self.WriteOffMemo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="WriteOffMemo">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_InventoryCard_Inventory">
+          <End Role="InventoryCard" Type="Self.InventoryCard" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="InventoryCard">
+              <PropertyRef Name="InventoryCardID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="InventoryCardID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepairNote_Inventory">
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="1" />
+          <End Role="RepairNote" Type="Self.RepairNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Inventory">
+              <PropertyRef Name="InventoryID" />
+            </Principal>
+            <Dependent Role="RepairNote">
+              <PropertyRef Name="InventoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Responsible_Inventory">
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="0..1" />
+          <End Role="Inventory" Type="Self.Inventory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsible">
+              <PropertyRef Name="ResponsibleID" />
+            </Principal>
+            <Dependent Role="Inventory">
+              <PropertyRef Name="ResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CurrentResponsible_MovementNote">
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="1" />
+          <End Role="MovementNote" Type="Self.MovementNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsible">
+              <PropertyRef Name="ResponsibleID" />
+            </Principal>
+            <Dependent Role="MovementNote">
+              <PropertyRef Name="CurrentResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PreviousResponsible_MovementNote">
+          <End Role="Responsible" Type="Self.Responsible" Multiplicity="1" />
+          <End Role="MovementNote" Type="Self.MovementNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Responsible">
+              <PropertyRef Name="ResponsibleID" />
+            </Principal>
+            <Dependent Role="MovementNote">
+              <PropertyRef Name="PreviousResponsibleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseCompany_PurchaseMemo">
+          <End Role="PurchaseCompany" Type="Self.PurchaseCompany" Multiplicity="1" />
+          <End Role="PurchaseMemo" Type="Self.PurchaseMemo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseCompany">
+              <PropertyRef Name="PurchaseCompanyID" />
+            </Principal>
+            <Dependent Role="PurchaseMemo">
+              <PropertyRef Name="PurchaseCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RepairCompany_RepairNote">
+          <End Role="RepairCompany" Type="Self.RepairCompany" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="RepairNote" Type="Self.RepairNote" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RepairCompany">
+              <PropertyRef Name="RepairCompanyID" />
+            </Principal>
+            <Dependent Role="RepairNote">
+              <PropertyRef Name="RepairCompanyID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InventoryDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Department" EntityType="Self.Department" />
+          <EntitySet Name="Inventory" EntityType="Self.Inventory" />
+          <EntitySet Name="InventoryCard" EntityType="Self.InventoryCard" />
+          <EntitySet Name="MovementNote" EntityType="Self.MovementNote" />
+          <EntitySet Name="PurchaseCompany" EntityType="Self.PurchaseCompany" />
+          <EntitySet Name="PurchaseMemo" EntityType="Self.PurchaseMemo" />
+          <EntitySet Name="RepairCompany" EntityType="Self.RepairCompany" />
+          <EntitySet Name="RepairNote" EntityType="Self.RepairNote" />
+          <EntitySet Name="Responsible" EntityType="Self.Responsible" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <EntitySet Name="WriteOffMemo" EntityType="Self.WriteOffMemo" />
+          <EntitySet Name="group_inventory_by_resp" EntityType="Self.group_inventory_by_resp" />
+          <EntitySet Name="inventory_by_resp_by_address" EntityType="Self.inventory_by_resp_by_address" />
+          <EntitySet Name="inventory_without_guarantee_by_resp" EntityType="Self.inventory_without_guarantee_by_resp" />
+          <EntitySet Name="inventory_without_repairs" EntityType="Self.inventory_without_repairs" />
+          <EntitySet Name="purchased_inventory_by_years" EntityType="Self.purchased_inventory_by_years" />
+          <EntitySet Name="responsibles_who_needed_repair" EntityType="Self.responsibles_who_needed_repair" />
+          <EntitySet Name="summary_for_inventory_repairs" EntityType="Self.summary_for_inventory_repairs" />
+          <AssociationSet Name="FK_Department_Responsible" Association="Self.FK_Department_Responsible">
+            <End Role="Department" EntitySet="Department" />
+            <End Role="Responsible" EntitySet="Responsible" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_MovementNote" Association="Self.FK_Inventory_MovementNote">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="MovementNote" EntitySet="MovementNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_PurchaseMemo" Association="Self.FK_Inventory_PurchaseMemo">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="PurchaseMemo" EntitySet="PurchaseMemo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Inventory_WriteOffMemo" Association="Self.FK_Inventory_WriteOffMemo">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="WriteOffMemo" EntitySet="WriteOffMemo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_InventoryCard_Inventory" Association="Self.FK_InventoryCard_Inventory">
+            <End Role="InventoryCard" EntitySet="InventoryCard" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepairNote_Inventory" Association="Self.FK_RepairNote_Inventory">
+            <End Role="Inventory" EntitySet="Inventory" />
+            <End Role="RepairNote" EntitySet="RepairNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Responsible_Inventory" Association="Self.FK_Responsible_Inventory">
+            <End Role="Responsible" EntitySet="Responsible" />
+            <End Role="Inventory" EntitySet="Inventory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CurrentResponsible_MovementNote" Association="Self.FK_CurrentResponsible_MovementNote">
+            <End Role="Responsible" EntitySet="Responsible" />
+            <End Role="MovementNote" EntitySet="MovementNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PreviousResponsible_MovementNote" Association="Self.FK_PreviousResponsible_MovementNote">
+            <End Role="Responsible" EntitySet="Responsible" />
+            <End Role="MovementNote" EntitySet="MovementNote" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseCompany_PurchaseMemo" Association="Self.FK_PurchaseCompany_PurchaseMemo">
+            <End Role="PurchaseCompany" EntitySet="PurchaseCompany" />
+            <End Role="PurchaseMemo" EntitySet="PurchaseMemo" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RepairCompany_RepairNote" Association="Self.FK_RepairCompany_RepairNote">
+            <End Role="RepairCompany" EntitySet="RepairCompany" />
+            <End Role="RepairNote" EntitySet="RepairNote" />
+          </AssociationSet>
+          <FunctionImport Name="CheckGuarantee" ReturnType="Collection(InventoryDBContext.CheckGuarantee_Result)" />
+          <FunctionImport Name="FindExpired" ReturnType="Collection(InventoryDBContext.FindExpired_Result)" />
+          <FunctionImport Name="ShowWrittenOffInventory" ReturnType="Collection(InventoryDBContext.ShowWrittenOffInventory_Result)" />
+        </EntityContainer>
+        <ComplexType Name="CheckGuarantee_Result">
+          <Property Type="String" Name="Название_оборудования" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Дата_гарантии" Nullable="true" />
+          <Property Type="String" Name="Статус_гарантии" Nullable="false" MaxLength="10" />
+        </ComplexType>
+        <ComplexType Name="FindExpired_Result">
+          <Property Type="String" Name="Название_оборудования" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Дата_гарантии" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="ShowWrittenOffInventory_Result">
+          <Property Type="String" Name="Название_оборудования" Nullable="false" MaxLength="100" />
+          <Property Type="DateTime" Name="Дата_списания" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище InventoryDBContextContainer" CdmEntityContainer="InventoryDBEntities">
+          <EntitySetMapping Name="Department">
+            <EntityTypeMapping TypeName="InventoryDBContext.Department">
+              <MappingFragment StoreEntitySet="Department">
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Inventory">
+            <EntityTypeMapping TypeName="InventoryDBContext.Inventory">
+              <MappingFragment StoreEntitySet="Inventory">
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="EntryDate" ColumnName="EntryDate" />
+                <ScalarProperty Name="WithdrawalDate" ColumnName="WithdrawalDate" />
+                <ScalarProperty Name="GuaranteeDate" ColumnName="GuaranteeDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+                <ScalarProperty Name="InventoryCardID" ColumnName="InventoryCardID" />
+                <ScalarProperty Name="ResponsibleID" ColumnName="ResponsibleID" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+                <ScalarProperty Name="InventoryName" ColumnName="InventoryName" />
+                <ScalarProperty Name="Condition" ColumnName="Condition" />
+                <ScalarProperty Name="SpecialSoftware" ColumnName="SpecialSoftware" />
+                <ScalarProperty Name="InventoryNumber" ColumnName="InventoryNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InventoryCard">
+            <EntityTypeMapping TypeName="InventoryDBContext.InventoryCard">
+              <MappingFragment StoreEntitySet="InventoryCard">
+                <ScalarProperty Name="InventoryCardID" ColumnName="InventoryCardID" />
+                <ScalarProperty Name="CreationDate" ColumnName="CreationDate" />
+                <ScalarProperty Name="InventoryCardNumber" ColumnName="InventorycardNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovementNote">
+            <EntityTypeMapping TypeName="InventoryDBContext.MovementNote">
+              <MappingFragment StoreEntitySet="MovementNote">
+                <ScalarProperty Name="MovementNoteID" ColumnName="MovementNoteID" />
+                <ScalarProperty Name="MovementDate" ColumnName="MovementDate" />
+                <ScalarProperty Name="PreviousResponsibleID" ColumnName="PreviousResponsibleID" />
+                <ScalarProperty Name="CurrentResponsibleID" ColumnName="CurrentResponsibleID" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseCompany">
+            <EntityTypeMapping TypeName="InventoryDBContext.PurchaseCompany">
+              <MappingFragment StoreEntitySet="PurchaseCompany">
+                <ScalarProperty Name="PurchaseCompanyID" ColumnName="PurchaseCompanyID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseMemo">
+            <EntityTypeMapping TypeName="InventoryDBContext.PurchaseMemo">
+              <MappingFragment StoreEntitySet="PurchaseMemo">
+                <ScalarProperty Name="PurchaseMemoID" ColumnName="PurchaseMemoID" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="DateOfPurchase" ColumnName="DateOfPurchase" />
+                <ScalarProperty Name="PurchasableInventoryID" ColumnName="PurchasableInventoryID" />
+                <ScalarProperty Name="PurchaseCompanyID" ColumnName="PurchaseCompanyID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepairCompany">
+            <EntityTypeMapping TypeName="InventoryDBContext.RepairCompany">
+              <MappingFragment StoreEntitySet="RepairCompany">
+                <ScalarProperty Name="RepairCompanyID" ColumnName="RepairCompanyID" />
+                <ScalarProperty Name="RepairCompanyName" ColumnName="RepairCompanyName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RepairNote">
+            <EntityTypeMapping TypeName="InventoryDBContext.RepairNote">
+              <MappingFragment StoreEntitySet="RepairNote">
+                <ScalarProperty Name="RepairNoteID" ColumnName="RepairNoteID" />
+                <ScalarProperty Name="RepairCompanyID" ColumnName="RepairCompanyID" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="RepairCost" ColumnName="RepairCost" />
+                <ScalarProperty Name="RepairDate" ColumnName="RepairDate" />
+                <ScalarProperty Name="Notes" ColumnName="Notes" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Responsible">
+            <EntityTypeMapping TypeName="InventoryDBContext.Responsible">
+              <MappingFragment StoreEntitySet="Responsible">
+                <ScalarProperty Name="ResponsibleID" ColumnName="ResponsibleID" />
+                <ScalarProperty Name="FCs" ColumnName="FCs" />
+                <ScalarProperty Name="CabinetNumber" ColumnName="CabinetNumber" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Department_ID" ColumnName="Department_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="InventoryDBContext.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="WriteOffMemo">
+            <EntityTypeMapping TypeName="InventoryDBContext.WriteOffMemo">
+              <MappingFragment StoreEntitySet="WriteOffMemo">
+                <ScalarProperty Name="WriteOffMemoID" ColumnName="WriteOffMemoID" />
+                <ScalarProperty Name="InventoryID" ColumnName="InventoryID" />
+                <ScalarProperty Name="WriteOffDate" ColumnName="WriteOffDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="group_inventory_by_resp">
+            <EntityTypeMapping TypeName="InventoryDBContext.group_inventory_by_resp">
+              <MappingFragment StoreEntitySet="group_inventory_by_resp">
+                <ScalarProperty Name="Инициалы" ColumnName="Инициалы" />
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventory_by_resp_by_address">
+            <EntityTypeMapping TypeName="InventoryDBContext.inventory_by_resp_by_address">
+              <MappingFragment StoreEntitySet="inventory_by_resp_by_address">
+                <ScalarProperty Name="Адрес" ColumnName="Адрес" />
+                <ScalarProperty Name="Инициалы" ColumnName="Инициалы" />
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventory_without_guarantee_by_resp">
+            <EntityTypeMapping TypeName="InventoryDBContext.inventory_without_guarantee_by_resp">
+              <MappingFragment StoreEntitySet="inventory_without_guarantee_by_resp">
+                <ScalarProperty Name="Инициалы" ColumnName="Инициалы" />
+                <ScalarProperty Name="Дата_окончания_гарантии" ColumnName="Дата окончания гарантии" />
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="inventory_without_repairs">
+            <EntityTypeMapping TypeName="InventoryDBContext.inventory_without_repairs">
+              <MappingFragment StoreEntitySet="inventory_without_repairs">
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+                <ScalarProperty Name="Инвентарный_номер" ColumnName="Инвентарный номер" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="purchased_inventory_by_years">
+            <EntityTypeMapping TypeName="InventoryDBContext.purchased_inventory_by_years">
+              <MappingFragment StoreEntitySet="purchased_inventory_by_years">
+                <ScalarProperty Name="Год" ColumnName="Год" />
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="responsibles_who_needed_repair">
+            <EntityTypeMapping TypeName="InventoryDBContext.responsibles_who_needed_repair">
+              <MappingFragment StoreEntitySet="responsibles_who_needed_repair">
+                <ScalarProperty Name="Инициалы_ответственного" ColumnName="Инициалы ответственного" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="summary_for_inventory_repairs">
+            <EntityTypeMapping TypeName="InventoryDBContext.summary_for_inventory_repairs">
+              <MappingFragment StoreEntitySet="summary_for_inventory_repairs">
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+                <ScalarProperty Name="Инвентарный_номер" ColumnName="Инвентарный номер" />
+                <ScalarProperty Name="Суммарные_затраты_на_ремонт" ColumnName="Суммарные затраты на ремонт" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="CheckGuarantee" FunctionName="Хранилище InventoryDBContext.CheckGuarantee">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBContext.CheckGuarantee_Result">
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+                <ScalarProperty Name="Дата_гарантии" ColumnName="Дата гарантии" />
+                <ScalarProperty Name="Статус_гарантии" ColumnName="Статус гарантии" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="FindExpired" FunctionName="Хранилище InventoryDBContext.FindExpired">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBContext.FindExpired_Result">
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+                <ScalarProperty Name="Дата_гарантии" ColumnName="Дата гарантии" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ShowWrittenOffInventory" FunctionName="Хранилище InventoryDBContext.ShowWrittenOffInventory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="InventoryDBContext.ShowWrittenOffInventory_Result">
+                <ScalarProperty Name="Название_оборудования" ColumnName="Название оборудования" />
+                <ScalarProperty Name="Дата_списания" ColumnName="Дата списания" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

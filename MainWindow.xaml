@@ -23,10 +23,10 @@
         </Grid.RowDefinitions>
 
         <Button x:Name="GuideBtn"  Content="Справочники" Grid.Row="0" Click="GuideBtn_Click"/>
-        <Button x:Name="AnylisisBtn" Content="Анализ" Grid.Row="1"/>
-        <Button x:Name="ReportBtn" Content="Отчеты" Grid.Row="2"/>
+        <Button x:Name="AnylisisBtn" Content="Анализ" Grid.Row="1" Click="AnylisisBtn_Click"/>
+        <Button x:Name="ReportBtn" Content="Отчеты" Grid.Row="2" Click="ReportBtn_Click"/>
         <Button x:Name="authBtn" Content="Сменить пользователя" Grid.Row="3" Click="authBtn_Click"/>
-        <Button x:Name="HelpBtn" Content="Справка" Grid.Row="4"/>
+        <Button x:Name="HelpBtn" Content="Справка" Grid.Row="4" Click="HelpBtn_Click"/>
         <Button x:Name="ExitBtn" Content="Выход" Grid.Row="5" Click="ExitBtn_Click"/>
 
     </Grid>

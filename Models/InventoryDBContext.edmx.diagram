@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="df8224a714454593a58c21d8c2bfae3c" Name="Diagram1">
+        <EntityTypeShape EntityType="InventoryDBContext.Department" Width="1.5" PointX="0.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.Inventory" Width="1.5" PointX="5.25" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.InventoryCard" Width="1.5" PointX="3" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.MovementNote" Width="1.5" PointX="7.5" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.PurchaseCompany" Width="1.5" PointX="8.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.PurchaseMemo" Width="1.5" PointX="10.5" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.RepairCompany" Width="1.5" PointX="5.25" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.RepairNote" Width="1.5" PointX="7.5" PointY="2" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.Responsible" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.Users" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.WriteOffMemo" Width="1.5" PointX="7.5" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.group_inventory_by_resp" Width="1.5" PointX="0.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.inventory_by_resp_by_address" Width="1.5" PointX="2.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.inventory_without_guarantee_by_resp" Width="1.5" PointX="4.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.inventory_without_repairs" Width="1.5" PointX="9.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.purchased_inventory_by_years" Width="1.5" PointX="10.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.responsibles_who_needed_repair" Width="1.5" PointX="11.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InventoryDBContext.summary_for_inventory_repairs" Width="1.5" PointX="11.75" PointY="2.75" IsExpanded="true" />
+        <AssociationConnector Association="InventoryDBContext.FK_Department_Responsible" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_Inventory_MovementNote" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_Inventory_PurchaseMemo" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_Inventory_WriteOffMemo" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_InventoryCard_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_RepairNote_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_Responsible_Inventory" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_CurrentResponsible_MovementNote" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_PreviousResponsible_MovementNote" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_PurchaseCompany_PurchaseMemo" ManuallyRouted="false" />
+        <AssociationConnector Association="InventoryDBContext.FK_RepairCompany_RepairNote" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

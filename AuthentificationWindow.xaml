@@ -7,20 +7,22 @@
         mc:Ignorable="d"
         Title="Окно авторизации" Height="200" Width="250" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Window.Resources>
-
+        <Style TargetType="Button" BasedOn="{StaticResource RoundButtonTemplate}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Margin" Value="30 10" />
+        </Style>
     </Window.Resources>
-    <Grid Margin="0,0,3.6,0.4">
-        <TextBox x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" Margin="86.2,22,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="132.8" ForceCursor="True" UseLayoutRounding="False" TabIndex="1" Foreground="#FF080808" IsUndoEnabled="False"/>
-        <Button x:Name="authBtn" Content="Авторизоваться" HorizontalAlignment="Left" Margin="61,109,0,0" VerticalAlignment="Top" Width="129" Height="35" TabIndex="3" Click="authBtn_Click" Background="#FF50FA45" UseLayoutRounding="True">
-            <Button.Resources>
-                <Style TargetType="Border">
-                    <Setter Property="CornerRadius" Value="20"/>
-                </Style>
-            </Button.Resources>
-        </Button>
-        <PasswordBox x:Name="passBox" HorizontalAlignment="Left" Height="22" Margin="86,68,0,0" VerticalAlignment="Top" Width="133" IsInactiveSelectionHighlightEnabled="True" TabIndex="2" Foreground="Black"/>
-        <Label Content="Логин" HorizontalAlignment="Left" Margin="31,19,0,0" VerticalAlignment="Top"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="31,64,0,0" VerticalAlignment="Top"/>
-
+    <Grid Background="#FF98F5DC">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="98*"/>
+            <RowDefinition Height="73*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <TextBox  x:Name="loginTextBox" HorizontalAlignment="Left" Height="23" TextWrapping="Wrap" VerticalAlignment="Top" Width="133" ForceCursor="True" UseLayoutRounding="False" TabIndex="1" Foreground="#FF080808" IsUndoEnabled="False" Margin="87,24,0,0"/>
+            <PasswordBox x:Name="passBox" HorizontalAlignment="Left" Height="22" VerticalAlignment="Top" Width="133" IsInactiveSelectionHighlightEnabled="True" TabIndex="2" Foreground="Black" Margin="87,62,0,0"/>
+            <Label FontWeight="Bold" Content="Логин" HorizontalAlignment="Left" VerticalAlignment="Top" RenderTransformOrigin="1.068,1.385" Margin="26,24,0,0"/>
+            <Label FontWeight="Bold" Content="Пароль" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="19,58,0,0"/>
+        </Grid>
+        <Button x:Name="authBtn" Grid.Row="1" Content="Авторизоваться" Click="authBtn_Click" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove" />
     </Grid>
 </Window>

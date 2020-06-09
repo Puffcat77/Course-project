@@ -1,5 +1,4 @@
-﻿using Course_project.Windows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -26,9 +25,14 @@ namespace Course_project
         string connectionString;
         SqlDataAdapter adapter = new SqlDataAdapter();
         SqlConnection connection;
+
         string CurrentTableName { get; set; }
 
         public string UserType { get; set; }
+        private DataTable currentTable;
+        private Brush baseButtonBrush;
+        bool isTableEditing = false;
+
         public GuideWindow()
         {
             InitializeComponent();
@@ -36,8 +40,21 @@ namespace Course_project
             connectionString = ConfigurationManager.ConnectionStrings["InventoryDBConnection"].ConnectionString;
             connection = null;
             CurrentTableName = "";
-            OptionsComboBox.IsEnabled = false;
             ApplyBtn.IsEnabled = false;
+            baseButtonBrush = ApplyBtn.Background;
+        }
+
+        private void UpdateDB()
+        {
+            try
+            {
+                SqlCommandBuilder commandBuilder = new SqlCommandBuilder(adapter);
+                adapter.Update(currentTable);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void FillGrid(string tableName)
@@ -46,7 +63,7 @@ namespace Course_project
             switch (tableName)
             {
                 case "Inventory":
-                    sql = "select InventoryNumber as 'Инвентарный номер', SerialNumber as 'Серийный номер', " +
+                    sql = "select InventoryID, InventoryNumber as 'Инвентарный номер', SerialNumber as 'Серийный номер', " +
                     "EntryDate as 'Дата ввода в эксплуатацию', WithdrawalDate as 'Дата вывода из эксплуатации', " +
                     "GuaranteeDate as 'Дата гарантийного обслуживания', Condition as 'Состояние', " +
                     "SpecialSoftware as 'Специальное ПО', InventoryName as 'Название оборудования', " +
@@ -56,24 +73,24 @@ namespace Course_project
                     "InventoryCard IC ON I.InventoryCardID = IC.InventoryCardID";
                     break;
                 case "InventoryCard":
-                    sql = "select InventoryCardNumber as 'Номер инвентарной карты', CreationDate as 'Дата создания инвентарной карты' " +
+                    sql = "select InventoryCardID, InventoryCardNumber as 'Номер инвентарной карты', CreationDate as 'Дата создания инвентарной карты' " +
                           "FROM InventoryCard";
                     break;
                 case "Department":
-                    sql = "select Name as 'Название отдела' FROM Department";
+                    sql = "select Department_ID as 'Код отдела', Name as 'Название отдела' FROM Department";
                     break;
                 case "Responsible":
-                    sql = "select FCs as 'Инициалы', CabinetNumber as 'Номер кабинета', " +
+                    sql = "select ResponsibleID, FCs as 'Инициалы', CabinetNumber as 'Номер кабинета', " +
                         "Address as 'Адрес', D.Name as 'Название отдела'  FROM Responsible R " +
                         "inner join Department D on D.Department_ID = R.Department_ID";
                     break;
                 case "RepairNote":
-                    sql = "select InventoryName as 'Название оборудования', RepairCompanyName as 'Название ремонтной компании', " +
+                    sql = "select RepairNoteID, InventoryName as 'Название оборудования', RepairCompanyName as 'Название ремонтной компании', " +
                         "RepairCost as 'Стоимость ремонта в рублях', RepairDate as 'Дата ремонта', RN.Notes as 'Заметки по ремонту' FROM RepairNote RN " +
                         "inner join Inventory I on RN.InventoryID = I.InventoryID inner join RepairCompany RC on RC.RepairCompanyID = RN.RepairCompanyID";
                     break;
                 case "MovementNote":
-                    sql = "select R.FCs as 'Текущий ответственный', RNM.[Предыдущий ответственный] as 'Предыдущий ответственный', " +
+                    sql = "select MovementNoteID, R.FCs as 'Текущий ответственный', RNM.[Предыдущий ответственный] as 'Предыдущий ответственный', " +
                          "RNM.[Дата перемещения] 'Дата перемещения', RNM.[Название оборудования] 'Название оборудования' " +
                          "from(select FCs as 'Предыдущий ответственный', MovementDate 'Дата перемещения', InventoryName " +
                          "'Название оборудования', CurrentResponsibleID from MovementNote MN inner join Responsible R on " +
@@ -81,32 +98,33 @@ namespace Course_project
                          "as RNM inner join Responsible R on RNM.CurrentResponsibleID = R.ResponsibleID";
                     break;
                 case "WriteOffMemo":
-                    sql = "SELECT WriteOffDate AS [Дата списания], InventoryName AS [Название оборудования] " +
+                    sql = "SELECT WriteOffMemoID, WriteOffDate AS [Дата списания], InventoryName AS [Название оборудования] " +
                          "FROM WriteOffMemo W INNER JOIN " +
                          "Inventory I ON W.InventoryID = I.InventoryID";
                     break;
                 case "PurchaseMemo":
-                    sql = "SELECT I.InventoryName AS [Название оборудования], PC.CompanyName AS [Название компании], " +
+                    sql = "SELECT PurchaseMemoID, I.InventoryName AS [Название оборудования], PC.CompanyName AS [Название компании], " +
                         "PM.DateOfPurchase AS [Дата покупки], PM.Cost AS [Цена в рублях] FROM PurchaseMemo AS PM INNER JOIN " +
                         "PurchaseCompany AS PC ON PM.PurchaseCompanyID = PC.PurchaseCompanyID INNER JOIN " +
                         "Inventory AS I ON PM.PurchasableInventoryID = I.InventoryID";
                     break;
                 case "PurchaseCompany":
-                    sql = "select CompanyName from PurchaseCompany";
+                    sql = "select PurchaseCompanyID, CompanyName from PurchaseCompany";
                     break;
                 case "RepairCompany":
-                    sql = "select RepairCompanyName from RepairCompany";
+                    sql = "select RepairCompanyID, RepairCompanyName from RepairCompany";
                     break;
             }
             try
             {
-                DataTable table = new DataTable();
+                currentTable = new DataTable();
                 connection = new SqlConnection(connectionString);
                 SqlCommand command = new SqlCommand(sql, connection);
                 connection.Open();
                 adapter.SelectCommand = command;
-                adapter.Fill(table);
-                MainDataGrid.ItemsSource = table.DefaultView;
+                adapter.Fill(currentTable);
+                MainDataGrid.ItemsSource = currentTable.DefaultView;
+                (MainDataGrid.Columns[0] as DataGridTextColumn).Visibility = Visibility.Hidden;
             }
             catch (Exception ex)
             {
@@ -119,24 +137,6 @@ namespace Course_project
             }
         }
 
-        private void OptionsComboBoxItem_Selected(object sender, RoutedEventArgs e)
-        {
-            var selectedItem = (sender as ComboBoxItem);
-            string sql = "";
-            switch (selectedItem.Tag.ToString())
-            {
-                case "Add":
-
-                    break;
-                case "Edit":
-                    break;
-                case "Delete":
-                    break;
-                case "Guarantee":
-                    break;
-            }
-            FillGrid(CurrentTableName);
-        }
         private void GuideComboBoxItem_Selected(object sender, RoutedEventArgs e)
         {
             var selectedItem = (sender as ComboBoxItem);
@@ -146,16 +146,48 @@ namespace Course_project
             {
                 if (column.Header.ToString().Contains("Дата"))
                     (column as DataGridTextColumn).Binding.StringFormat = String.Format("dd.MM.yyyy");
-                if (column.Header.ToString().Contains("Цена"))
+                if (column.Header.ToString().Contains("Цена") || column.Header.ToString().Contains("Стоимость"))
                     (column as DataGridTextColumn).Binding.StringFormat = String.Format("##.00");
             }
-            OptionsComboBox.IsEnabled = true;
             ApplyBtn.IsEnabled = true;
         }
 
         private void ToMainMenuBtn_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void ApplyBtn_Click(object sender, RoutedEventArgs e)
+        {
+            if (UserType != "Technician")
+            {
+                MessageBox.Show("У вас недостаточно прав.");
+                return;
+            }
+            if (isTableEditing)
+            {
+                IsEditingLabel.Visibility = Visibility.Hidden;
+                MainDataGrid.IsReadOnly = true;
+                MainDataGrid.CanUserAddRows = false;
+                MainDataGrid.CanUserDeleteRows = false;
+                GuideComboBox.IsEnabled = true;
+                UpdateDB();
+            }
+            else
+            {
+                IsEditingLabel.Visibility = Visibility.Visible;
+                MainDataGrid.IsReadOnly = false;
+                MainDataGrid.CanUserAddRows = true;
+                MainDataGrid.CanUserDeleteRows = true;
+                GuideComboBox.IsEnabled = true;
+            }
+            isTableEditing = !isTableEditing;
+        }
+
+        private void Btn_MouseMove(object sender, MouseEventArgs e)
+        {
+            var b = (sender as Button);
+            b.Background = (b.Background == baseButtonBrush) ? b.Background = Brushes.LawnGreen : b.Background = baseButtonBrush;
         }
     }
 }

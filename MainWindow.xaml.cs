@@ -44,9 +44,7 @@ namespace Course_project
         private void Button_MouseMoved(object sender, RoutedEventArgs e)
         {
             var b = (sender as Button);
-            if (b.Background == baseButtonBrush)
-                b.Background = Brushes.LawnGreen;
-            else b.Background = baseButtonBrush;
+            b.Background = (b.Background == baseButtonBrush) ? b.Background = Brushes.LawnGreen : b.Background = baseButtonBrush;
         }
 
         private void AuthorizeUser() 
@@ -70,6 +68,7 @@ namespace Course_project
 
         private void authBtn_Click(object sender, RoutedEventArgs e)
         {
+            UserType = "";
             AuthorizeUser();
         }
 
@@ -78,6 +77,24 @@ namespace Course_project
             GuideWindow gdWindow = new GuideWindow();
             gdWindow.UserType = UserType;
             gdWindow.ShowDialog();
+        }
+
+        private void AnylisisBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AnalysisWindow analysisWindow = new AnalysisWindow();
+            analysisWindow.ShowDialog();
+        }
+
+        private void ReportBtn_Click(object sender, RoutedEventArgs e)
+        {
+            ReportWindow reportWindow = new ReportWindow();
+            reportWindow.ShowDialog();
+        }
+
+        private void HelpBtn_Click(object sender, RoutedEventArgs e)
+        {
+            HelpWindow helpWindow = new HelpWindow();
+            helpWindow.ShowDialog();
         }
     }
 }

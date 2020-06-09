@@ -1,0 +1,41 @@
+﻿<Window x:Class="Course_project.AnalysisWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Course_project"
+        mc:Ignorable="d"
+        Title="Анализ" Height="450" Width="800" WindowStartupLocation="CenterScreen" MinWidth="800">
+    <Window.Resources>
+        <Style BasedOn="{StaticResource RoundButtonTemplate}" TargetType="Button">
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="Margin" Value="10" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition Height="0.2*"/>
+        </Grid.RowDefinitions>
+
+        <DataGrid Name="AnalysisDataGrid" AlternatingRowBackground="#FFD5FB94" RowBackground="#FF86FBC6" Background="#FF82FFBB" FontWeight="Bold" IsReadOnly="True">
+            <DataGrid.Resources>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Background" Value="LightGreen"/>
+                </Style>
+            </DataGrid.Resources>
+        </DataGrid>
+
+        <Grid Grid.Row="1" Background="#FF82FFBB">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <ComboBox Name="AnalysisComboBox" Margin="15"/>
+            <Button x:Name="ToMainMenuBtn" Grid.Column="1" Content="В главное меню" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove" Click="ToMainMenuBtn_Click"/>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿<Window x:Class="Course_project.ReportWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Course_project"
+        mc:Ignorable="d"
+        Title="Отчеты" Height="300" Width="320" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="Button" BasedOn="{StaticResource RoundButtonTemplate}">
+            <Setter Property="Margin" Value="4" />
+            <Setter Property="FontSize" Value="15"/>
+        </Style>
+    </Window.Resources>
+    <Grid x:Name="ReportWindowGrid" Background="#FF98F5DC">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Button Tag="RepairCosts" Grid.Row="0" Content="Затраты на ремонт оборудования" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove" Click="GenerateReportBtn_Click"/>
+        <Button Tag="PurchaseCosts" Grid.Row="1" Content="Затраты на закупку оборудования" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove" Click="GenerateReportBtn_Click"/>
+        <Button Tag="RepairFrequency" Grid.Row="2" Content="Частота ремонтов оборудования" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove" Click="GenerateReportBtn_Click"/>
+        <Button Name="ToMainMenuBtn" Content="В главное меню" Grid.Row="3" Click="ToMainMenuBtn_Click" MouseEnter="Btn_MouseMove" MouseLeave="Btn_MouseMove"/>
+    </Grid>
+</Window>

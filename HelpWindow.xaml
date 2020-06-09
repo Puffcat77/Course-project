@@ -5,14 +5,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Course_project"
         mc:Ignorable="d"
-        Title="HelpWindow" Height="450" Width="400">
-    <Grid>
+        Title="HelpWindow" Height="450" Width="400" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="TextAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="Button" BasedOn="{StaticResource RoundButtonTemplate}">
+            
+        </Style>
+    </Window.Resources>
+    <Grid Background="#FF98F5DC" Name="MainGrid">
         <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        
-        
-        
+
+        <Grid Grid.Row="0">
+            <TextBlock TextWrapping="Wrap" Text="Клиентское приложение, разработанное в рамках курсового проекта по предмету технология обработки информации для учета оборудования организацией ММБУ УДОМС города Мурманска"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+                <RowDefinition Height="1*"/>
+            </Grid.RowDefinitions>
+
+            <TextBlock Name="TitleBlock" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" TextAlignment="Center"/>
+            <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="1" Grid.ColumnSpan="2" >
+                <TextBlock Name="HelpTextBlock" TextWrapping="Wrap" TextAlignment="Center" Height="82" Width="171"/>
+            </ScrollViewer>
+            <Button Name="NextBtn" Grid.Row="2" Grid.Column="1" Margin="10 5" Click="NextBtn_Click" MouseEnter="Button_MouseMoved" MouseLeave="Button_MouseMoved"/>
+            <Button Name="PrevBtn" Grid.Row="2" Grid.Column="0" Margin="10 5" Click="PrevBtn_Click" MouseEnter="Button_MouseMoved" MouseLeave="Button_MouseMoved"/>
+        </Grid>
+
+        <Button Name="ToMainMenuBtn" Grid.Row="2" Margin="40 10" Content="В главное меню" Click="ToMainMenuBtn_Click" MouseEnter="Button_MouseMoved" MouseLeave="Button_MouseMoved"/>
     </Grid>
 </Window>
