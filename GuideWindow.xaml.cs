@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Reporting.WinForms.Internal.Soap.ReportingServices2005.Execution;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -57,62 +58,64 @@ namespace Course_project
             }
         }
 
+        //private void FillGrid(string tablePrefix)
+        //{
+        //    foreach (var column in MainDataGrid.Columns.All())
+        //    {
+        //        var c = column as DataGridTextColumn;
+        //        if ()
+        //    }
+        //}
+
         private void FillGrid(string tableName)
         {
             string sql = "";
             switch (tableName)
             {
                 case "Inventory":
-                    sql = "select InventoryID, InventoryNumber as 'Инвентарный номер', SerialNumber as 'Серийный номер', " +
+                    sql = "select InventoryID as 'Идентификатор оборувания', InventoryNumber as 'Инвентарный номер', SerialNumber as 'Серийный номер', " +
                     "EntryDate as 'Дата ввода в эксплуатацию', WithdrawalDate as 'Дата вывода из эксплуатации', " +
                     "GuaranteeDate as 'Дата гарантийного обслуживания', Condition as 'Состояние', " +
                     "SpecialSoftware as 'Специальное ПО', InventoryName as 'Название оборудования', " +
-                    "FCs as 'Ответственный', InventoryCardNumber as 'Номер инвентарной карты', " +
-                    "Notes as 'Заметки' FROM Inventory I INNER JOIN " +
-                    "Responsible R ON I.ResponsibleID = R.ResponsibleID INNER JOIN " +
-                    "InventoryCard IC ON I.InventoryCardID = IC.InventoryCardID";
+                    "ResponsibleID as 'Идентификатор ответственного', InventoryCardID as 'Идентификатор инвентарной карты', " +
+                    "Notes as 'Заметки' FROM Inventory I";
                     break;
                 case "InventoryCard":
-                    sql = "select InventoryCardID, InventoryCardNumber as 'Номер инвентарной карты', CreationDate as 'Дата создания инвентарной карты' " +
+                    sql = "select InventoryCardID 'Идентификатор инвентарной карты', " +
+                        "InventoryCardNumber as 'Номер инвентарной карты', CreationDate as 'Дата создания инвентарной карты' " +
                           "FROM InventoryCard";
                     break;
                 case "Department":
-                    sql = "select Department_ID as 'Код отдела', Name as 'Название отдела' FROM Department";
+                    sql = "select Department_ID as 'Идентификатор отдела', Name as 'Название отдела' FROM Department";
                     break;
                 case "Responsible":
-                    sql = "select ResponsibleID, FCs as 'Инициалы', CabinetNumber as 'Номер кабинета', " +
-                        "Address as 'Адрес', D.Name as 'Название отдела'  FROM Responsible R " +
-                        "inner join Department D on D.Department_ID = R.Department_ID";
+                    sql = "select ResponsibleID 'Идентификатор ответственного', FCs as 'Инициалы', CabinetNumber as 'Номер кабинета', " +
+                        "Address as 'Адрес', Department_ID as 'Идентификатор отдела'  FROM Responsible";
                     break;
                 case "RepairNote":
-                    sql = "select RepairNoteID, InventoryName as 'Название оборудования', RepairCompanyName as 'Название ремонтной компании', " +
-                        "RepairCost as 'Стоимость ремонта в рублях', RepairDate as 'Дата ремонта', RN.Notes as 'Заметки по ремонту' FROM RepairNote RN " +
-                        "inner join Inventory I on RN.InventoryID = I.InventoryID inner join RepairCompany RC on RC.RepairCompanyID = RN.RepairCompanyID";
+                    sql = "SELECT RepairNoteID AS [Идентификатор записи о ремонте], InventoryID AS [Идентификатор оборудования], " +
+                        "RepairCompanyID AS [Идентификатор ремонтной компании], RepairCost AS [Стоимость ремонта],"+
+                        "RepairDate AS[Дата ремонта], Notes AS Заметки FROM dbo.RepairNote";
                     break;
                 case "MovementNote":
-                    sql = "select MovementNoteID, R.FCs as 'Текущий ответственный', RNM.[Предыдущий ответственный] as 'Предыдущий ответственный', " +
-                         "RNM.[Дата перемещения] 'Дата перемещения', RNM.[Название оборудования] 'Название оборудования' " +
-                         "from(select FCs as 'Предыдущий ответственный', MovementDate 'Дата перемещения', InventoryName " +
-                         "'Название оборудования', CurrentResponsibleID from MovementNote MN inner join Responsible R on " +
-                         "R.ResponsibleID = MN.PreviousResponsibleID inner join Inventory I on MN.InventoryID = I.InventoryID) " +
-                         "as RNM inner join Responsible R on RNM.CurrentResponsibleID = R.ResponsibleID";
+                    sql = "SELECT MovementNoteID AS [Идентификатор записи о перемещении], InventoryID AS [Идентификатор оборудования]," +
+                        " PreviousResponsibleID AS [Предыдущий ответственный], CurrentResponsibleID AS [Текущий ответственный], " + 
+                        "MovementDate AS[Дата перемещения], Notes AS Заметки FROM dbo.MovementNote";
                     break;
                 case "WriteOffMemo":
-                    sql = "SELECT WriteOffMemoID, WriteOffDate AS [Дата списания], InventoryName AS [Название оборудования] " +
-                         "FROM WriteOffMemo W INNER JOIN " +
-                         "Inventory I ON W.InventoryID = I.InventoryID";
+                    sql = "SELECT WriteOffMemoID 'Идентификатор записи о списании на склад', WriteOffDate AS [Дата списания], " +
+                        "InventoryID AS [Идентификатор оборудования] FROM WriteOffMemo";
                     break;
                 case "PurchaseMemo":
-                    sql = "SELECT PurchaseMemoID, I.InventoryName AS [Название оборудования], PC.CompanyName AS [Название компании], " +
-                        "PM.DateOfPurchase AS [Дата покупки], PM.Cost AS [Цена в рублях] FROM PurchaseMemo AS PM INNER JOIN " +
-                        "PurchaseCompany AS PC ON PM.PurchaseCompanyID = PC.PurchaseCompanyID INNER JOIN " +
-                        "Inventory AS I ON PM.PurchasableInventoryID = I.InventoryID";
+                    sql = "SELECT PurchaseMemoID AS [Идентификатор записи о закупке], PurchasableInventoryID " +
+                        "AS [Идентификатор закупаемого оборудования], PurchaseCompanyID AS [Идентифитор фирмы закупки]," +
+                        " DateOfPurchase AS [Дата закупки], Cost AS Стоимость FROM dbo.PurchaseMemo";
                     break;
                 case "PurchaseCompany":
-                    sql = "select PurchaseCompanyID, CompanyName from PurchaseCompany";
+                    sql = "select PurchaseCompanyID 'Идентифитор фирмы закупки', CompanyName from PurchaseCompany";
                     break;
                 case "RepairCompany":
-                    sql = "select RepairCompanyID, RepairCompanyName from RepairCompany";
+                    sql = "select RepairCompanyID 'Идентификатор ремонтной компании', RepairCompanyName from RepairCompany";
                     break;
             }
             try
@@ -124,7 +127,8 @@ namespace Course_project
                 adapter.SelectCommand = command;
                 adapter.Fill(currentTable);
                 MainDataGrid.ItemsSource = currentTable.DefaultView;
-                (MainDataGrid.Columns[0] as DataGridTextColumn).Visibility = Visibility.Hidden;
+                (MainDataGrid.Columns[0] as DataGridTextColumn).Visibility = Visibility.Visible;
+                (MainDataGrid.Columns[0] as DataGridTextColumn).IsReadOnly = true;
             }
             catch (Exception ex)
             {
@@ -171,6 +175,7 @@ namespace Course_project
                 MainDataGrid.CanUserAddRows = false;
                 MainDataGrid.CanUserDeleteRows = false;
                 GuideComboBox.IsEnabled = true;
+                ToMainMenuBtn.IsEnabled = true;
                 UpdateDB();
             }
             else
@@ -179,7 +184,8 @@ namespace Course_project
                 MainDataGrid.IsReadOnly = false;
                 MainDataGrid.CanUserAddRows = true;
                 MainDataGrid.CanUserDeleteRows = true;
-                GuideComboBox.IsEnabled = true;
+                GuideComboBox.IsEnabled = false;
+                ToMainMenuBtn.IsEnabled = false;
             }
             isTableEditing = !isTableEditing;
         }

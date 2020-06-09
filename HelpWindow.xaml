@@ -14,7 +14,7 @@
             <Setter Property="TextAlignment" Value="Center" />
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource RoundButtonTemplate}">
-            
+
         </Style>
     </Window.Resources>
     <Grid Background="#FF98F5DC" Name="MainGrid">
@@ -39,9 +39,9 @@
                 <RowDefinition Height="1*"/>
             </Grid.RowDefinitions>
 
-            <TextBlock Name="TitleBlock" Grid.Row="0" Grid.ColumnSpan="2" TextWrapping="Wrap" TextAlignment="Center"/>
-            <ScrollViewer VerticalScrollBarVisibility="Auto"  Grid.Row="1" Grid.ColumnSpan="2" >
-                <TextBlock Name="HelpTextBlock" TextWrapping="Wrap" TextAlignment="Center" Height="82" Width="171"/>
+            <TextBlock Name="TitleBlock" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" TextWrapping="Wrap" TextAlignment="Center"/>
+            <ScrollViewer  VerticalScrollBarVisibility="Auto"  Grid.Row="1" Grid.ColumnSpan="2" >
+                <TextBlock Name="HelpTextBlock" TextWrapping="Wrap" TextAlignment="Justify" />
             </ScrollViewer>
             <Button Name="NextBtn" Grid.Row="2" Grid.Column="1" Margin="10 5" Click="NextBtn_Click" MouseEnter="Button_MouseMoved" MouseLeave="Button_MouseMoved"/>
             <Button Name="PrevBtn" Grid.Row="2" Grid.Column="0" Margin="10 5" Click="PrevBtn_Click" MouseEnter="Button_MouseMoved" MouseLeave="Button_MouseMoved"/>

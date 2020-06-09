@@ -28,7 +28,7 @@
                     <Setter Property="Background" Value="LightGreen"/>
                 </Style>
             </DataGrid.Resources>
-            
+
         </DataGrid>
 
         <Grid x:Name="GuideWithOptionsGrid" Grid.Row="1" Background="#FF98F5DC">
