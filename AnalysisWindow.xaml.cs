@@ -39,7 +39,10 @@ namespace Course_project
                 ("InventoryByResponsiblesByAddress", "Ответственные с оборудованием по адресам ответственных"),
                 ("InventoryWithoutRepairs", "Оборудование, для которого не проводился ремонт"),
                 ("SummaryForRepairs", "Суммарные затраты на ремонт оборудования"),
-                ("ResponsibleWithRepairs", "Ответственные, у которых произошла минимум одна отправка на ремонт.")
+                ("ResponsibleWithRepairs", "Ответственные, у которых произошла минимум одна отправка на ремонт."),
+                ("CheckGuarantee", "Проверка статуса гарантийного обслуживания"),
+                ("FindExpired", "Оборудование без гарантийного обслуживания"),
+                ("ShowWrittenOffInventory", "Списанное оборудование"),
             };
             FillAnalysisComboBox();
         }
@@ -81,10 +84,23 @@ namespace Course_project
                     case "SummaryForRepairs":
                         AnalysisDataGrid.ItemsSource = InventoryContext.summary_for_inventory_repairs.ToList();
                         break;
+                    case "CheckGuarantee":
+                        AnalysisDataGrid.ItemsSource = InventoryContext.CheckGuarantee();
+                        break;
+                    case "FindExpired":
+                        AnalysisDataGrid.ItemsSource = InventoryContext.FindExpired();
+                        break;
+                    case "ShowWrittenOffInventory":
+                        AnalysisDataGrid.ItemsSource = InventoryContext.ShowWrittenOffInventory();
+                        break;
                 }
                 foreach (var column in AnalysisDataGrid.Columns)
                 {
                     (column as DataGridTextColumn).Header = (column as DataGridTextColumn).Header.ToString().Replace("_", " ");
+                    if (column.Header.ToString().Contains("Дата"))
+                        (column as DataGridTextColumn).Binding.StringFormat = String.Format("dd.MM.yyyy");
+                    if (column.Header.ToString().Contains("Цена") || column.Header.ToString().Contains("Стоимость"))
+                        (column as DataGridTextColumn).Binding.StringFormat = String.Format("##.00");
                 }
             }
             catch (Exception ex)

@@ -93,7 +93,6 @@
     <Compile Include="AnalysisWindow.xaml.cs">
       <DependentUpon>AnalysisWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DB.cs" />
     <Compile Include="Models\HelpElement.cs" />
     <Compile Include="ReportForm.cs">
       <SubType>Form</SubType>
